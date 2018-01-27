@@ -1,0 +1,83 @@
+[gd_scene load_steps=14 format=1]
+
+[ext_resource path="res://player.gd" type="Script" id=1]
+[ext_resource path="res://media/temp_art/character/UpperArmLeft_Character001.png" type="Texture" id=2]
+[ext_resource path="res://media/temp_art/character/LowerArmLeft_Character001.png" type="Texture" id=3]
+[ext_resource path="res://media/temp_art/character/HandLeft_Character001.png" type="Texture" id=4]
+[ext_resource path="res://media/temp_art/character/Head_Character001.png" type="Texture" id=5]
+[ext_resource path="res://media/temp_art/character/Body_Character001.png" type="Texture" id=6]
+[ext_resource path="res://media/temp_art/character/UpperArmRight_Character001.png" type="Texture" id=7]
+[ext_resource path="res://media/temp_art/character/Harness_Character001.png" type="Texture" id=8]
+[ext_resource path="res://media/temp_art/character/UpperLegLeft_Character001.png" type="Texture" id=9]
+[ext_resource path="res://media/temp_art/character/LowerLegLeft_Character001.png" type="Texture" id=10]
+[ext_resource path="res://media/temp_art/character/FootLeft_Character001.png" type="Texture" id=11]
+[ext_resource path="res://media/temp_art/character/LowerArmRight_Character001.png" type="Texture" id=12]
+[ext_resource path="res://media/temp_art/character/HandRight_Character001.png" type="Texture" id=13]
+
+[node name="Player" type="Node2D"]
+
+script/script = ExtResource( 1 )
+gravity = 98
+speed = 20
+
+[node name="UpperArmLeft_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( -4.28307, 9.01143 )
+texture = ExtResource( 2 )
+
+[node name="LowerArmLeft_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( 9.56354, 23.6725 )
+texture = ExtResource( 3 )
+
+[node name="HandLeft_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( 23.4101, 22.858 )
+texture = ExtResource( 4 )
+
+[node name="Head_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( 17.7086, -6.46419 )
+texture = ExtResource( 5 )
+
+[node name="Body_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( -1.83955, 9.01143 )
+texture = ExtResource( 6 )
+
+[node name="UpperArmRight_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( 27.4827, 14.713 )
+texture = ExtResource( 7 )
+
+[node name="Harness_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( -14.0571, -0.762643 )
+texture = ExtResource( 8 )
+
+[node name="UpperLegLeft_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( -25.4602, 32.6321 )
+texture = ExtResource( 9 )
+
+[node name="LowerLegLeft_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( -27.9037, 55.4383 )
+texture = ExtResource( 10 )
+
+[node name="FootLeft_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( -41.7503, 65.2123 )
+texture = ExtResource( 11 )
+
+[node name="LowerArmRight_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( 42.1438, 29.3741 )
+texture = ExtResource( 12 )
+
+[node name="HandRight_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( 55.1759, 27.7451 )
+texture = ExtResource( 13 )
+
+
