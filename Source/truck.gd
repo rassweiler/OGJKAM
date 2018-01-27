@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var globals = get_node('/root/globals')
+
 export(int) var max_speed = 250
 export(int) var acceleration = 90
 export(int) var reverse_acceleration = 70
@@ -8,6 +10,11 @@ export(int) var slowdown = 30;
 
 export(int) var boom_max_speed = 250
 export(int) var boom_acceleration = 70
+
+export(int) var team = 0
+
+var player_on_device = -1
+var truck_on_device = -1
 
 enum STATES {
 	default
@@ -22,14 +29,34 @@ onready var wheel_left = self.get_node("WheelLeft")
 onready var wheel_right = self.get_node("WheelRight")
 
 func _ready():
+	self.determine_inputs()
 	self.set_fixed_process(true)
 	
+func determine_inputs():
+	var players = globals.playersForTeam(self.team)
+	
+	if players.size() == 0:
+		if team == 0:
+			truck_on_device = 0
+			player_on_device = 0
+		return
+	
+	if players.size() > 1:
+		for p in players:
+			if p.position == 0:
+				truck_on_device = p.device_id
+			else:
+				player_on_device = p.device_id
+	else:
+		truck_on_device = players[0].device_id
+		player_on_device = players[0].device_id
+
 func set_state(state):
 	self.state = state
 	self.state_change_at = OS.get_ticks_msec()
-	
+
 func process_boom(delta):
-	var joy_up = Input.get_joy_axis(0, JOY_AXIS_3)
+	var joy_up = Input.get_joy_axis(player_on_device, JOY_AXIS_3)
 	
 	if (abs(joy_up) > .3):
 		var boom_hook = get_node("./BoomHook")
@@ -54,8 +81,8 @@ func process_boom(delta):
 		boom.set_rotd(new_rotd)
 
 func process_default(delta):
-	var forward_acceleration_modifier = Input.get_joy_axis(0, JOY_AXIS_7)
-	var reverse_acceleration_modifier = Input.get_joy_axis(0, JOY_AXIS_6)
+	var forward_acceleration_modifier = Input.get_joy_axis(truck_on_device, JOY_AXIS_7)
+	var reverse_acceleration_modifier = Input.get_joy_axis(truck_on_device, JOY_AXIS_6)
 	
 	if (forward_acceleration_modifier > .2):
 		self.velocity.x += self.acceleration * forward_acceleration_modifier * delta

@@ -1,11 +1,11 @@
 [gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
-[ext_resource path="res://media/temp_art/character/Body.png" type="Texture" id=2]
-[ext_resource path="res://media/temp_art/character/Head.png" type="Texture" id=3]
-[ext_resource path="res://media/temp_art/character/UpperArmLeft_Character001.png" type="Texture" id=4]
-[ext_resource path="res://media/temp_art/character/LowerArmLeft_Character001.png" type="Texture" id=5]
-[ext_resource path="res://media/temp_art/character/HandLeft_Character001.png" type="Texture" id=6]
+[ext_resource path="res://media/temp_art/character/UpperArmLeft_Character001.png" type="Texture" id=2]
+[ext_resource path="res://media/temp_art/character/LowerArmLeft_Character001.png" type="Texture" id=3]
+[ext_resource path="res://media/temp_art/character/HandLeft_Character001.png" type="Texture" id=4]
+[ext_resource path="res://media/temp_art/character/Head.png" type="Texture" id=5]
+[ext_resource path="res://media/temp_art/character/Body_Character001.png" type="Texture" id=6]
 [ext_resource path="res://media/temp_art/character/UpperArmRight_Character001.png" type="Texture" id=7]
 [ext_resource path="res://media/temp_art/character/LowerArmRight_Character001.png" type="Texture" id=8]
 [ext_resource path="res://media/temp_art/character/HandRight_Character001.png" type="Texture" id=9]
@@ -32,7 +32,7 @@ speed = 20
 
 input/pickable = false
 shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 0.364366, 0, 0, 0.34344, -7.20321, -9.51754 )
+shapes/0/transform = Matrix32( 0.364366, 0, 0, 0.34344, -7.10098, -0.59313 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -56,91 +56,93 @@ damp_override/angular = -1.0
 
 transform/scale = Vector2( 0.5, 0.5 )
 
-[node name="Body" type="Sprite" parent="RigidBody/Node2D"]
+[node name="UpperArmLeft_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( -1.524, 5.85584 )
-z/z = 1
+transform/pos = Vector2( -4.28307, 9.01143 )
 texture = ExtResource( 2 )
 
-[node name="Head_Character001" type="Sprite" parent="RigidBody/Node2D/Body"]
+[node name="LowerArmLeft_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( 19.5481, -36.618 )
-z/z = -1
+transform/pos = Vector2( 9.56356, 23.6725 )
 texture = ExtResource( 3 )
 
-[node name="UpperArmLeft_Character001" type="Sprite" parent="RigidBody/Node2D/Body"]
+[node name="HandLeft_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-editor/display_folded = true
-transform/pos = Vector2( -2.75907, 3.15559 )
-z/z = -1
+transform/pos = Vector2( 23.4101, 22.858 )
 texture = ExtResource( 4 )
 
-[node name="LowerArmLeft_Character001" type="Sprite" parent="RigidBody/Node2D/Body/UpperArmLeft_Character001"]
+[node name="Head_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( 13.8466, 14.6611 )
+transform/pos = Vector2( 17.7086, -6.46419 )
 texture = ExtResource( 5 )
 
-[node name="HandLeft_Character001" type="Sprite" parent="RigidBody/Node2D/Body/UpperArmLeft_Character001/LowerArmLeft_Character001"]
+[node name="Body" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( 13.8465, -0.814501 )
+transform/pos = Vector2( -1.83955, 9.01143 )
 texture = ExtResource( 6 )
 
-[node name="UpperArmRight_Character001" type="Sprite" parent="RigidBody/Node2D/Body"]
+[node name="UpperArmRight_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( 27.0182, -4.33291 )
+transform/pos = Vector2( 27.4827, 14.713 )
 texture = ExtResource( 7 )
-offset = Vector2( 1.9885, 9.19007 )
 
-[node name="LowerArmRight_Character001" type="Sprite" parent="RigidBody/Node2D/Body/UpperArmRight_Character001"]
+[node name="Harness_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( 18.6496, 19.8512 )
+transform/pos = Vector2( -14.0571, -0.762643 )
 texture = ExtResource( 8 )
 
-[node name="HandRight_Character001" type="Sprite" parent="RigidBody/Node2D/Body/UpperArmRight_Character001/LowerArmRight_Character001"]
+[node name="UpperLegLeft_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( 15.2415, -3.629 )
+transform/pos = Vector2( -25.4602, 32.6321 )
 texture = ExtResource( 9 )
 
-[node name="Harness_Character001" type="Sprite" parent="RigidBody/Node2D/Body"]
+[node name="LowerLegLeft_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( -12.5331, -22.2548 )
+transform/pos = Vector2( -27.9037, 55.4383 )
 texture = ExtResource( 10 )
 
-[node name="UpperLegLeft_Character001" type="Sprite" parent="RigidBody/Node2D/Body"]
+[node name="FootLeft_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
 editor/display_folded = true
 transform/pos = Vector2( -27.9362, 24.7763 )
 texture = ExtResource( 11 )
 
-[node name="LowerLegLeft_Character001" type="Sprite" parent="RigidBody/Node2D/Body/UpperLegLeft_Character001"]
+[node name="LowerArmRight_Character001" type="Sprite" parent="RigidBody/Node2D"]
+
 
 transform/pos = Vector2( -8.4435, 26.8062 )
 transform/rot = 0.122804
+
 texture = ExtResource( 12 )
 
-[node name="FootLeft_Character001" type="Sprite" parent="RigidBody/Node2D/Body/UpperLegLeft_Character001/LowerLegLeft_Character001"]
+[node name="HandRight_Character001" type="Sprite" parent="RigidBody/Node2D"]
+
 
 transform/pos = Vector2( -15.8595, 21.7654 )
+
 texture = ExtResource( 13 )
 
-[node name="UpperLegRight_Character001" type="Sprite" parent="RigidBody/Node2D/Body"]
+[node name="UpperLegRight_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
 transform/pos = Vector2( -3.3483, 33.2575 )
+
 texture = ExtResource( 14 )
 
-[node name="LowerLegRight_Character001" type="Sprite" parent="RigidBody/Node2D/Body/UpperLegRight_Character001"]
+[node name="LowerLegRight_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
 transform/pos = Vector2( -6.80422, 28.2162 )
+
 texture = ExtResource( 15 )
 
-[node name="FootRight_Character001" type="Sprite" parent="RigidBody/Node2D/Body/UpperLegRight_Character001/LowerLegRight_Character001"]
+[node name="FootRight_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
 transform/pos = Vector2( -13.968, 21.5192 )
+
 texture = ExtResource( 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody"]
 
-transform/pos = Vector2( -7.20321, -9.51754 )
+transform/pos = Vector2( -7.10098, -0.59313 )
 transform/scale = Vector2( 0.364366, 0.34344 )
 shape = SubResource( 1 )
 trigger = false
