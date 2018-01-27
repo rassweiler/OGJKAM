@@ -29,12 +29,16 @@ transform/pos = Vector2( 1.7962, 1.19746 )
 
 [node name="Ground" parent="." instance=ExtResource( 4 )]
 
+visibility/visible = false
+
 [node name="Sun" type="Sprite" parent="."]
 
 transform/pos = Vector2( -700.438, -746.457 )
 texture = ExtResource( 5 )
 
 [node name="UtilityPole" parent="." instance=ExtResource( 6 )]
+
+visibility/visible = false
 
 [node name="truck1" parent="." instance=ExtResource( 7 )]
 

@@ -11,14 +11,14 @@ var terrain = []
 var poles = []
 
 func build_screen():
-	var screen = Ground.new()
+	var screen = Ground.instance()
 	
 	self.add_child(screen)
 	
 	return screen
 	
 func build_pole():
-	var pole = UtilityPole.new()
+	var pole = UtilityPole.instance()
 	
 	self.add_child(pole)
 	
@@ -28,20 +28,24 @@ func generate_level():
 	for i in range(screens):
 		var screen = build_screen()
 		
-		var pos = Vector2(i * 1920, 0)
+		var pos = Vector2((i * 1920) - 960, 560)
 		
 		screen.set_pos(pos)
 		
 		for p in range(pole_density):
 			var pole = build_pole()
 			
-			var pole_pos = Vector2(1920.0/self.pole_density, 0)
+			var pole_pos = Vector2(1920.0/self.pole_density, -400)
 			pole_pos.x *= p
 			
 			randomize()
 			pole_pos.x += self.pole_x_variance * rand_range(-1, 1)
+			
+			pole_pos.x += pos.x
+			
+			pole.set_pos(pole_pos)
 
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	pass
+	generate_level()

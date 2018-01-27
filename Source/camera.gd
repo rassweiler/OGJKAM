@@ -89,7 +89,7 @@ func _process(delta):
 	
 	var smaller_than_screen = (self.shape.size.x < 1920 && self.shape.size.y < 1080)
 	
-	var allow_zoom = false
+	var allow_zoom = true
 	
 	if (smaller_than_screen and not allow_zoom):
 		self.goal_pos = Vector2(
@@ -107,8 +107,8 @@ func _process(delta):
 		
 		var scale = min(scale_factor.x, scale_factor.y)
 		
-		if (scale < 0.8):
-			scale = 0.8
+		if (scale < 0.9):
+			scale = 0.9
 		
 		self.goal_pos = Vector2(
 			(self.shape.size.x/2)+start.x,
