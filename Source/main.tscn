@@ -26,13 +26,6 @@ drag_margin/v_enabled = false
 [node name="truck" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 1.7962, 1.19746 )
-acceleration = 90
-reverse_acceleration = 70
-braking_acceleration = 500
-slowdown = 30
-boom_max_speed = 250
-boom_acceleration = 70
-team = 0
 
 [node name="Ground" parent="." instance=ExtResource( 4 )]
 
@@ -51,5 +44,8 @@ team = 1
 [node name="Level" type="Node2D" parent="."]
 
 script/script = ExtResource( 8 )
+screens = 20
+pole_density = 1
+pole_x_variance = 200
 
 
