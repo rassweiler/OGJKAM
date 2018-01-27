@@ -10,7 +10,7 @@
 [ext_resource path="res://media/temp_art/truck001/BoomOuter_Truck001.png" type="Texture" id=8]
 [ext_resource path="res://realtether.gd" type="Script" id=9]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -20,7 +20,7 @@ extents = Vector2( 10, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 250, 10 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -44,7 +44,8 @@ team = 0
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( 196.551, -185.842 )
+transform/pos = Vector2( 188.59, -168.593 )
+mode = 2
 
 [node name="Pivot_Truck001" type="Sprite" parent="."]
 
@@ -71,7 +72,7 @@ texture = ExtResource( 6 )
 editor/display_folded = true
 transform/pos = Vector2( -283.205, -407.752 )
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -80,7 +81,7 @@ collision/margin = 0.08
 
 [node name="BoomShaftShape" type="CollisionShape2D" parent="BoomShaft"]
 
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
@@ -128,10 +129,10 @@ node_a = NodePath("../BoomHook")
 node_b = NodePath("../Player")
 bias/bias = 0.0
 collision/exclude_nodes = true
-length = 50.0
-rest_length = 0.0
-stiffness = 1.0
-damping = 0.8
+length = 76.0
+rest_length = 20.0
+stiffness = 10.2
+damping = 0.0
 script/script = ExtResource( 9 )
 
 [node name="BoomHook" type="KinematicBody2D" parent="."]
@@ -139,7 +140,7 @@ script/script = ExtResource( 9 )
 editor/display_folded = true
 transform/pos = Vector2( 199.43, -406.105 )
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 3 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, -2.16138, -1.08069 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -149,7 +150,7 @@ collision/margin = 0.08
 [node name="Shape" type="CollisionShape2D" parent="BoomHook"]
 
 transform/pos = Vector2( -2.16138, -1.08069 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 

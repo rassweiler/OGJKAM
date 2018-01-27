@@ -103,6 +103,8 @@ func process_default(delta):
 	var position = self.get_pos()
 	position.x += clamp(self.velocity.x, -self.max_speed, self.max_speed) * delta
 	
+	get_node("Player").apply_impulse(velocity, Vector2(1,1))
+	
 	if (self.velocity.x > 0):
 		var mod = self.velocity.x / self.max_speed
 		self.wheel_left.set_rotd(self.wheel_left.get_rotd() - 5 * mod)

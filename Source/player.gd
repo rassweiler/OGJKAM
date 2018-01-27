@@ -29,7 +29,6 @@ func process_default(delta):
 		self.set_state(STATES.attack)
 	
 
-
 func process_attack(delta):
 	pass
 
