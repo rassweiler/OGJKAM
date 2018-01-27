@@ -45,7 +45,7 @@ func process_boom(delta):
 		var y = tan(deg2rad(new_rotd)) * x
 		
 		#var hypotenuse = sqrt(x*x + y*y)
-		print("SET Y", y)
+		#print("SET Y", y)
 		
 		var cpos = boom_hook.get_pos()
 		cpos.y = boom.get_pos().y - y

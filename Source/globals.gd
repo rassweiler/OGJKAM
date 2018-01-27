@@ -6,14 +6,23 @@ const PlayerInfo = preload("PlayerInfo.gd")
 
 var current_scene = null
 
+func getFromDevice(device_id):
+	for player in players:
+		if player.device_id == device_id:
+			return player
+	return null
+
 func addPlayer(device_id, team, position):
 	var player = PlayerInfo.new()
 	
+	player.index = self.players.size()
 	player.device_id = device_id
 	player.team = team
 	player.position = position
 	
 	self.players.append(player)
+	
+	return player
 
 func _ready():
 	pass
