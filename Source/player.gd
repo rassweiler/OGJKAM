@@ -6,7 +6,7 @@ export(int) var speed = 20
 enum STATES {
 	default,
 	attack,
-	fixing
+	fixing  
 }
 
 var state = STATES.default
@@ -27,7 +27,8 @@ func process_default(delta):
 	
 	if is_action_pressed:
 		self.set_state(STATES.attack)
-		
+	
+
 
 func process_attack(delta):
 	pass
