@@ -22,7 +22,7 @@ func _ready():
 
 func set_state(state):
 	self.state = state
-	self.state_change_at = OS.get_ticks_msec()	
+	self.state_change_at = OS.get_ticks_msec()
 
 func process_default(delta):
 	var is_action_pressed = Input.is_joy_button_pressed(0, JOY_XBOX_A)
