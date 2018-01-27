@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://player.gd" type="Script" id=1]
 [ext_resource path="res://media/temp_art/character/UpperArmLeft_Character001.png" type="Texture" id=2]
@@ -13,6 +13,9 @@
 [ext_resource path="res://media/temp_art/character/FootLeft_Character001.png" type="Texture" id=11]
 [ext_resource path="res://media/temp_art/character/LowerArmRight_Character001.png" type="Texture" id=12]
 [ext_resource path="res://media/temp_art/character/HandRight_Character001.png" type="Texture" id=13]
+[ext_resource path="res://media/temp_art/character/UpperLegRight_Character001.png" type="Texture" id=14]
+[ext_resource path="res://media/temp_art/character/LowerLegRight_Character001.png" type="Texture" id=15]
+[ext_resource path="res://media/temp_art/character/FootRight_Character001.png" type="Texture" id=16]
 
 [node name="Player" type="Node2D"]
 
@@ -79,5 +82,20 @@ texture = ExtResource( 12 )
 
 transform/pos = Vector2( 55.1759, 27.7451 )
 texture = ExtResource( 13 )
+
+[node name="UpperLegRight_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( 4.87068, 31.1133 )
+texture = ExtResource( 14 )
+
+[node name="LowerLegRight_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( 3.67903, 57.3295 )
+texture = ExtResource( 15 )
+
+[node name="FootRight_Character001" type="Sprite" parent="."]
+
+transform/pos = Vector2( -2.6764, 68.8487 )
+texture = ExtResource( 16 )
 
 
