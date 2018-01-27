@@ -13,12 +13,10 @@ var state = STATES.default
 
 var velocity = Vector2()
 
-var state_change_at = 0
+onready var state_change_at = OS.get_ticks_msec()
 
 func _ready():
-	var state_change_at = OS.get_ticks_msec() 
 	self.set_fixed_process(true)
-	
 
 func set_state(state):
 	self.state = state

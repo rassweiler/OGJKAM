@@ -18,22 +18,43 @@ reverse_acceleration = 40
 braking_acceleration = 140
 slowdown = 10
 
-[node name="BoomOuter_Truck001" type="Sprite" parent="."]
+[node name="BoomOuter" type="Sprite" parent="."]
 
-transform/pos = Vector2( -269.55, -273.153 )
+transform/pos = Vector2( -283.205, -407.752 )
 texture = ExtResource( 2 )
 centered = false
 offset = Vector2( -20, -18 )
 
-[node name="BoomInner_Truck001" type="Sprite" parent="BoomOuter_Truck001"]
+[node name="BoomInner" type="Sprite" parent="BoomOuter"]
 
 transform/pos = Vector2( 236.231, 0.565887 )
 z/z = -1
 texture = ExtResource( 3 )
 
+[node name="RigidBody" type="RigidBody2D" parent="BoomOuter/BoomInner"]
+
+input/pickable = false
+collision/layers = 1
+collision/mask = 1
+mode = 0
+mass = 1.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+velocity/linear = Vector2( 0, 0 )
+velocity/angular = 0.0
+damp_override/linear = -1.0
+damp_override/angular = -1.0
+
 [node name="Pivot_Truck001" type="Sprite" parent="."]
 
-transform/pos = Vector2( -271.329, -203.994 )
+transform/pos = Vector2( -290.836, -234.23 )
 texture = ExtResource( 4 )
 
 [node name="Body_Truck001" type="Sprite" parent="."]

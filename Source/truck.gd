@@ -14,16 +14,11 @@ var state = STATES.default
 
 var velocity = Vector2()
 
-var state_change_at = 0
-
-var wheel_left = null
-var wheel_right = null
+onready var state_change_at = OS.get_ticks_msec()
+onready var wheel_left = self.get_node("WheelLeft")
+onready var wheel_right = self.get_node("WheelRight")
 
 func _ready():
-	self.wheel_left = self.get_node("WheelLeft")
-	self.wheel_right = self.get_node("WheelRight")
-	
-	var state_change_at = OS.get_ticks_msec() 
 	self.set_fixed_process(true)
 	
 func set_state(state):
