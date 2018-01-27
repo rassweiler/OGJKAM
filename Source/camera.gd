@@ -57,7 +57,7 @@ func _process(delta):
 	
 	var points = [
 		self.get_parent().get_node("truck"),
-		self.get_parent().get_node("player"),
+		self.get_parent().get_node("truck/Player"),
 		#self.get_parent().get_node("person1"),
 		#self.get_parent().get_node("person2")
 	]
