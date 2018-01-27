@@ -16,7 +16,6 @@ var pivots = []
 
 func create_segments():
 	var last_pos = self.node_from.get_pos()
-	self.set_pos(last_pos)
 	
 	var last_pivot_pos = self.node_from.get_pos()
 	
@@ -63,7 +62,7 @@ func create_segments():
 		last_pivot_pos.y += self.segment_size
 		pivot.set_node_a(self.chains[i].get_path())
 		pivot.set_node_b(self.chains[i+1].get_path())
-		self.add_child(pivot)
+		self.chains[i].add_child(pivot)
 	
 	var last_pivot = PinJoint2D.new()
 	self.pivots.append(last_pivot)
@@ -71,7 +70,7 @@ func create_segments():
 	last_pivot.set_exclude_nodes_from_collision(true)
 	last_pivot.set_node_a(self.chains[-1].get_path())
 	last_pivot.set_node_b(self.node_to.get_path())
-	self.add_child(last_pivot)
+	self.chains[-1].add_child(last_pivot)
 	
 	self.node_to.set_pos(self.pivots[-1].get_pos())
 
@@ -83,23 +82,27 @@ func _ready():
 func _draw():
 	#for chain in self.chains:
 	#	self.draw_rect(Rect2(chain.get_pos().x, chain.get_pos().y, 5, self.segment_size), Color(255, 0, 0))
-	var current = self.pivots[0].get_pos()
+	var current = self.pivots[0].get_global_pos()
 	for i in range(self.chain_count):
-		var next = self.pivots[-1].get_pos()
+		var next = self.pivots[-1].get_global_pos()
 		if (i + 1 < self.chain_count):
-			next = self.chains[i+1].get_pos()
+			next = self.chains[i+1].get_global_pos()
 		
 		var angle = (current - next).angle()
 		var chain = self.chains[i]
 		var state = edit_get_state()
 		edit_rotate(rad2deg(angle))
-		self.draw_rect(Rect2(chain.get_pos().x, chain.get_pos().y, 5, self.segment_size), Color(255, 0, 0))
+		self.draw_rect(Rect2(chain.get_global_pos().x, chain.get_global_pos().y, 5, self.segment_size), Color(255, 0, 0))
 		edit_set_state(state)
 		
 		current = chain.get_pos()
 	
-	for pivot in self.pivots:
-		self.draw_circle(pivot.get_pos(), 3, Color(0, 255, 0))
+	for i in range(self.pivots.size()):
+		var from = self.node_from.get_global_pos()
+		if (i > 0):
+			from = self.pivots[i-1].get_global_pos()
+		draw_line(from, self.pivots[i].get_global_pos(), Color(0, 0, 255), 2)
+		self.draw_circle(self.pivots[i].get_global_pos(), 3, Color(0, 255, 0))
 
 func _process(delta):
 	#self.refresh_chain_pos()

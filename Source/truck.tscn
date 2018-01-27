@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=1]
 
-[ext_resource path="res://player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://truck.gd" type="Script" id=2]
-[ext_resource path="res://media/temp_art/truck001/BoomOuter_Truck001.png" type="Texture" id=3]
-[ext_resource path="res://media/temp_art/truck001/BoomInner_Truck001.png" type="Texture" id=4]
-[ext_resource path="res://tether.tscn" type="PackedScene" id=5]
-[ext_resource path="res://media/temp_art/truck001/Pivot_Truck001.png" type="Texture" id=6]
-[ext_resource path="res://media/temp_art/truck001/Body_Truck001.png" type="Texture" id=7]
-[ext_resource path="res://media/temp_art/truck001/WheelLeft_Truck001.png" type="Texture" id=8]
-[ext_resource path="res://media/temp_art/truck001/WheelRight_Truck001.png" type="Texture" id=9]
+[ext_resource path="res://truck.gd" type="Script" id=1]
+[ext_resource path="res://media/temp_art/truck001/BoomOuter_Truck001.png" type="Texture" id=2]
+[ext_resource path="res://media/temp_art/truck001/BoomInner_Truck001.png" type="Texture" id=3]
+[ext_resource path="res://realtether.gd" type="Script" id=4]
+[ext_resource path="res://media/temp_art/truck001/Pivot_Truck001.png" type="Texture" id=5]
+[ext_resource path="res://media/temp_art/truck001/Body_Truck001.png" type="Texture" id=6]
+[ext_resource path="res://media/temp_art/truck001/WheelLeft_Truck001.png" type="Texture" id=7]
+[ext_resource path="res://media/temp_art/truck001/WheelRight_Truck001.png" type="Texture" id=8]
+[ext_resource path="res://player.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -19,17 +19,13 @@ extents = Vector2( 10, 10 )
 
 transform/scale = Vector2( 0.5, 0.5 )
 
-[node name="Player" parent="." instance=ExtResource( 1 )]
-
-transform/pos = Vector2( 560.142, -482.222 )
-
 [node name="KinematicBody" type="KinematicBody2D" parent="."]
 
 input/pickable = false
 collision/layers = 2
 collision/mask = 1
 collision/margin = 0.08
-script/script = ExtResource( 2 )
+script/script = ExtResource( 1 )
 max_speed = 250
 acceleration = 70
 reverse_acceleration = 40
@@ -39,7 +35,7 @@ slowdown = 10
 [node name="BoomOuter" type="Sprite" parent="KinematicBody"]
 
 transform/pos = Vector2( -283.205, -407.752 )
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 centered = false
 offset = Vector2( -20, -18 )
 
@@ -47,7 +43,7 @@ offset = Vector2( -20, -18 )
 
 transform/pos = Vector2( 236.231, 0.565887 )
 z/z = -1
-texture = ExtResource( 4 )
+texture = ExtResource( 3 )
 
 [node name="KinematicBody" type="KinematicBody2D" parent="KinematicBody/BoomOuter/BoomInner"]
 
@@ -67,33 +63,42 @@ shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Tether" parent="KinematicBody/BoomOuter/BoomInner" instance=ExtResource( 5 )]
+[node name="tether" type="DampedSpringJoint2D" parent="KinematicBody/BoomOuter/BoomInner"]
 
-transform/pos = Vector2( 245.449, -0.0559387 )
-z/z = 3
-chain_count = 16
-max_length = 200
-node_from_path = NodePath("../KinematicBody")
-node_to_path = NodePath("../../../../Player/RigidBody")
+transform/pos = Vector2( 46.974, 407.186 )
+z/z = 4
+node_a = NodePath("../KinematicBody")
+node_b = NodePath("../../../../Player/RigidBody")
+bias/bias = 0.0
+collision/exclude_nodes = true
+length = 50.0
+rest_length = 0.0
+stiffness = 1.0
+damping = 0.8
+script/script = ExtResource( 4 )
 
 [node name="Pivot_Truck001" type="Sprite" parent="KinematicBody"]
 
 transform/pos = Vector2( -290.836, -234.23 )
-texture = ExtResource( 6 )
+texture = ExtResource( 5 )
 
 [node name="Body_Truck001" type="Sprite" parent="KinematicBody"]
 
 transform/pos = Vector2( -47.9164, 5.18481 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
 
 [node name="WheelLeft" type="Sprite" parent="KinematicBody"]
 
 transform/pos = Vector2( -278.304, 94.9394 )
-texture = ExtResource( 8 )
+texture = ExtResource( 7 )
 
 [node name="WheelRight" type="Sprite" parent="KinematicBody"]
 
 transform/pos = Vector2( 152.696, 95.9394 )
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
+
+[node name="Player" parent="." instance=ExtResource( 9 )]
+
+transform/pos = Vector2( 224.939, -236.7 )
 
 
