@@ -1,9 +1,9 @@
 extends DampedSpringJoint2D
 
 func _ready():
-	set_process(true)
+	set_fixed_process(true)
 
-func _process(delta):
+func _fixed_process(delta):
 	update()
 
 func _draw():
