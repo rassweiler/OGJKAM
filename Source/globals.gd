@@ -12,6 +12,13 @@ func getFromDevice(device_id):
 			return player
 	return null
 
+func playersForTeam(team):
+	var ret = []
+	for player in players:
+		if player.team == team:
+			ret.append(player)
+	return ret
+
 func addPlayer(device_id, team, position):
 	var player = PlayerInfo.new()
 	
@@ -25,7 +32,7 @@ func addPlayer(device_id, team, position):
 	return player
 
 func _ready():
-	pass
+	self.current_scene = get_tree().get_current_scene()
 
 func goto_scene(path):
 	# This function will usually be called from a signal callback,

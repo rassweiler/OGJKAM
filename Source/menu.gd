@@ -69,6 +69,9 @@ func removePlayer(player):
 	for s in range(4):
 		if slots[s] == player:
 			clearSlot(s)
+	
+	player.team = -1
+	player.position = -1
 			
 	get_node(player_els[player.index]["join"]).set("visibility/visible", true)
 	get_node(player_els[player.index]["token"]).set_pos(player_els[player.index]["tokenInitial"])
@@ -94,6 +97,15 @@ func slotPlayer(player, intoSlot):
 func _input(event):
 	var player = globals.getFromDevice(event.device)
 	
+	var joined_players = 0
+	for i in range(4):
+		if slots[i] != null:
+			joined_players += 1
+	
+	if event.type == InputEvent.JOYSTICK_BUTTON and event.button_index == JOY_START:
+		if joined_players > 1:
+			globals.goto_scene("res://main.tscn")
+
 	if player == null: #we know they are not in slot yet
 		if event.type == InputEvent.JOYSTICK_BUTTON and event.button_index == JOY_XBOX_A:
 			var intoSlot = nextOpenSlot()

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://media/temp_art/level001/Ground.png" type="Texture" id=1]
+[ext_resource path="res://Ground.gd" type="Script" id=2]
+
+[node name="Ground" type="Sprite"]
+
+transform/pos = Vector2( -31.4707, 578.583 )
+texture = ExtResource( 1 )
+script/script = ExtResource( 2 )
+
+

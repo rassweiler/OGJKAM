@@ -11,8 +11,8 @@ enum TEAM{
 }
 
 var device_id = -1
-var team = 0
-var position = 0
+var team = -1
+var position = -1
 var index = -1
 
 func _ready():

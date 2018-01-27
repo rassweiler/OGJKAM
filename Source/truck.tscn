@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://truck.gd" type="Script" id=1]
-[ext_resource path="res://media/temp_art/truck001/Pivot_Truck001.png" type="Texture" id=2]
-[ext_resource path="res://media/temp_art/truck001/Body_Truck001.png" type="Texture" id=3]
-[ext_resource path="res://media/temp_art/truck001/WheelLeft_Truck001.png" type="Texture" id=4]
-[ext_resource path="res://media/temp_art/truck001/WheelRight_Truck001.png" type="Texture" id=5]
-[ext_resource path="res://media/temp_art/truck001/BoomInner_Truck001.png" type="Texture" id=6]
-[ext_resource path="res://media/temp_art/truck001/BoomOuter_Truck001.png" type="Texture" id=7]
-[ext_resource path="res://realtether.gd" type="Script" id=8]
-[ext_resource path="res://player.tscn" type="PackedScene" id=9]
+[ext_resource path="res://player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://media/temp_art/truck001/Pivot_Truck001.png" type="Texture" id=3]
+[ext_resource path="res://media/temp_art/truck001/Body_Truck001.png" type="Texture" id=4]
+[ext_resource path="res://media/temp_art/truck001/WheelLeft_Truck001.png" type="Texture" id=5]
+[ext_resource path="res://media/temp_art/truck001/WheelRight_Truck001.png" type="Texture" id=6]
+[ext_resource path="res://media/temp_art/truck001/BoomInner_Truck001.png" type="Texture" id=7]
+[ext_resource path="res://media/temp_art/truck001/BoomOuter_Truck001.png" type="Texture" id=8]
+[ext_resource path="res://realtether.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=3]
 
@@ -25,14 +25,11 @@ extents = Vector2( 250, 10 )
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
 
-[node name="Truck" type="Node2D"]
+[node name="Truck" type="KinematicBody2D"]
 
 transform/scale = Vector2( 0.5, 0.5 )
-
-[node name="KinematicBody" type="KinematicBody2D" parent="."]
-
 input/pickable = false
-collision/layers = 2
+collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 script/script = ExtResource( 1 )
@@ -43,29 +40,35 @@ braking_acceleration = 500
 slowdown = 30
 boom_max_speed = 250
 boom_acceleration = 70
+team = 0
 
-[node name="Pivot_Truck001" type="Sprite" parent="KinematicBody"]
+[node name="Player" parent="." instance=ExtResource( 2 )]
+
+transform/pos = Vector2( 196.551, -185.842 )
+
+[node name="Pivot_Truck001" type="Sprite" parent="."]
 
 transform/pos = Vector2( -290.836, -234.23 )
-texture = ExtResource( 2 )
-
-[node name="Body_Truck001" type="Sprite" parent="KinematicBody"]
-
-transform/pos = Vector2( -47.9164, 3.23409 )
 texture = ExtResource( 3 )
 
-[node name="WheelLeft" type="Sprite" parent="KinematicBody"]
+[node name="Body_Truck001" type="Sprite" parent="."]
 
-transform/pos = Vector2( -278.304, 94.9394 )
+transform/pos = Vector2( -47.9164, 3.23409 )
 texture = ExtResource( 4 )
 
-[node name="WheelRight" type="Sprite" parent="KinematicBody"]
+[node name="WheelLeft" type="Sprite" parent="."]
 
-transform/pos = Vector2( 152.696, 95.9394 )
+transform/pos = Vector2( -278.304, 94.9394 )
 texture = ExtResource( 5 )
 
-[node name="BoomShaft" type="KinematicBody2D" parent="KinematicBody"]
+[node name="WheelRight" type="Sprite" parent="."]
 
+transform/pos = Vector2( 152.696, 95.9394 )
+texture = ExtResource( 6 )
+
+[node name="BoomShaft" type="KinematicBody2D" parent="."]
+
+editor/display_folded = true
 transform/pos = Vector2( -283.205, -407.752 )
 input/pickable = false
 shapes/0/shape = SubResource( 3 )
@@ -75,13 +78,13 @@ collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 
-[node name="BoomShaftShape" type="CollisionShape2D" parent="KinematicBody/BoomShaft"]
+[node name="BoomShaftShape" type="CollisionShape2D" parent="BoomShaft"]
 
 shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
-[node name="BoomArm" type="KinematicBody2D" parent="KinematicBody/BoomShaft"]
+[node name="BoomArm" type="KinematicBody2D" parent="BoomShaft"]
 
 transform/pos = Vector2( 236.231, 0.565887 )
 input/pickable = false
@@ -92,24 +95,24 @@ collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody/BoomShaft/BoomArm"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoomShaft/BoomArm"]
 
 shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
-[node name="BoomInner" type="Sprite" parent="KinematicBody/BoomShaft/BoomArm"]
+[node name="BoomInner" type="Sprite" parent="BoomShaft/BoomArm"]
 
 z/z = -1
-texture = ExtResource( 6 )
-
-[node name="BoomOuter" type="Sprite" parent="KinematicBody/BoomShaft"]
-
 texture = ExtResource( 7 )
+
+[node name="BoomOuter" type="Sprite" parent="BoomShaft"]
+
+texture = ExtResource( 8 )
 centered = false
 offset = Vector2( -20, -18 )
 
-[node name="PinJoint2D" type="PinJoint2D" parent="KinematicBody/BoomShaft"]
+[node name="PinJoint2D" type="PinJoint2D" parent="BoomShaft"]
 
 transform/pos = Vector2( 477.68, 2.16144 )
 node_a = NodePath("../../tether")
@@ -118,20 +121,20 @@ bias/bias = 0.0
 collision/exclude_nodes = true
 softness = 0.0
 
-[node name="tether" type="DampedSpringJoint2D" parent="KinematicBody"]
+[node name="tether" type="DampedSpringJoint2D" parent="."]
 
 z/z = 4
 node_a = NodePath("../BoomHook")
-node_b = NodePath("../../Player/RigidBody")
+node_b = NodePath("../Player")
 bias/bias = 0.0
 collision/exclude_nodes = true
 length = 50.0
 rest_length = 0.0
 stiffness = 1.0
 damping = 0.8
-script/script = ExtResource( 8 )
+script/script = ExtResource( 9 )
 
-[node name="BoomHook" type="KinematicBody2D" parent="KinematicBody"]
+[node name="BoomHook" type="KinematicBody2D" parent="."]
 
 editor/display_folded = true
 transform/pos = Vector2( 199.43, -406.105 )
@@ -143,15 +146,11 @@ collision/layers = 1
 collision/mask = 1
 collision/margin = 0.08
 
-[node name="Shape" type="CollisionShape2D" parent="KinematicBody/BoomHook"]
+[node name="Shape" type="CollisionShape2D" parent="BoomHook"]
 
 transform/pos = Vector2( -2.16138, -1.08069 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
-
-[node name="Player" parent="." instance=ExtResource( 9 )]
-
-transform/pos = Vector2( 196.551, -185.842 )
 
 

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://media/temp_art/level001/UtilityPole.png" type="Texture" id=1]
+
+[node name="UtilityPole" type="Sprite"]
+
+transform/pos = Vector2( 129.071, -459.652 )
+texture = ExtResource( 1 )
+
+
