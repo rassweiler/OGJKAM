@@ -45,7 +45,7 @@ func _process(delta):
 	if (current_zoom != self.goal_zoom):
 		var new_zoom = current_zoom
 		
-		if (cam_zoom.x >  self.goal_zoom.x):
+		if (new_zoom.x >  self.goal_zoom.x):
 			cam_zoom_speed *= -1
 		new_zoom.x += cam_zoom_speed * delta
 		new_zoom.y += cam_zoom_speed * delta
@@ -56,10 +56,10 @@ func _process(delta):
 		self.set_zoom(new_zoom)
 	
 	var points = [
-		self.get_parent().get_node("truck1"),
-		self.get_parent().get_node("truck2"),
-		self.get_parent().get_node("person1"),
-		self.get_parent().get_node("person2")
+		self.get_parent().get_node("truck"),
+		self.get_parent().get_node("player"),
+		#self.get_parent().get_node("person1"),
+		#self.get_parent().get_node("person2")
 	]
 	
 	self.shape = Rect2(10000, 10000, -10000, -10000)
