@@ -14,11 +14,6 @@ current = true
 
 [node name="truck" parent="." instance=ExtResource( 2 )]
 
-acceleration = 70
-reverse_acceleration = 40
-braking_acceleration = 140
-slowdown = 10
-
 [node name="player" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 88.0143, -6.58611 )
