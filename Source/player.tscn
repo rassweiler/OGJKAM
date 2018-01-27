@@ -7,15 +7,15 @@
 [ext_resource path="res://media/temp_art/character/Head.png" type="Texture" id=5]
 [ext_resource path="res://media/temp_art/character/Body_Character001.png" type="Texture" id=6]
 [ext_resource path="res://media/temp_art/character/UpperArmRight_Character001.png" type="Texture" id=7]
-[ext_resource path="res://media/temp_art/character/Harness_Character001.png" type="Texture" id=8]
-[ext_resource path="res://media/temp_art/character/UpperLegLeft_Character001.png" type="Texture" id=9]
-[ext_resource path="res://media/temp_art/character/LowerLegLeft_Character001.png" type="Texture" id=10]
-[ext_resource path="res://media/temp_art/character/FootLeft_Character001.png" type="Texture" id=11]
-[ext_resource path="res://media/temp_art/character/LowerArmRight_Character001.png" type="Texture" id=12]
-[ext_resource path="res://media/temp_art/character/HandRight_Character001.png" type="Texture" id=13]
-[ext_resource path="res://media/temp_art/character/UpperLegRight_Character001.png" type="Texture" id=14]
-[ext_resource path="res://media/temp_art/character/LowerLegRight_Character001.png" type="Texture" id=15]
-[ext_resource path="res://media/temp_art/character/FootRight_Character001.png" type="Texture" id=16]
+[ext_resource path="res://media/temp_art/character/LowerArmRight_Character001.png" type="Texture" id=8]
+[ext_resource path="res://media/temp_art/character/HandRight_Character001.png" type="Texture" id=9]
+[ext_resource path="res://media/temp_art/character/Pivot.png" type="Texture" id=10]
+[ext_resource path="res://media/temp_art/character/UpperLegLeft.png" type="Texture" id=11]
+[ext_resource path="res://media/temp_art/character/LowerLegLeft.png" type="Texture" id=12]
+[ext_resource path="res://media/temp_art/character/FootLeft.png" type="Texture" id=13]
+[ext_resource path="res://media/temp_art/character/UpperLegRight.png" type="Texture" id=14]
+[ext_resource path="res://media/temp_art/character/LowerLegRight.png" type="Texture" id=15]
+[ext_resource path="res://media/temp_art/character/FootRight.png" type="Texture" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -103,32 +103,41 @@ texture = ExtResource( 10 )
 
 [node name="FootLeft_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( -41.7503, 65.2123 )
+editor/display_folded = true
+transform/pos = Vector2( -27.9362, 24.7763 )
 texture = ExtResource( 11 )
 
 [node name="LowerArmRight_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( 42.1438, 29.3741 )
+
+transform/pos = Vector2( -8.4435, 26.8062 )
+transform/rot = 0.122804
+
 texture = ExtResource( 12 )
 
 [node name="HandRight_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( 55.1759, 27.7451 )
+
+transform/pos = Vector2( -15.8595, 21.7654 )
+
 texture = ExtResource( 13 )
 
 [node name="UpperLegRight_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( 4.87067, 31.1133 )
+transform/pos = Vector2( -3.3483, 33.2575 )
+
 texture = ExtResource( 14 )
 
 [node name="LowerLegRight_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( 3.67903, 57.3295 )
+transform/pos = Vector2( -6.80422, 28.2162 )
+
 texture = ExtResource( 15 )
 
 [node name="FootRight_Character001" type="Sprite" parent="RigidBody/Node2D"]
 
-transform/pos = Vector2( -2.6764, 68.8487 )
+transform/pos = Vector2( -13.968, 21.5192 )
+
 texture = ExtResource( 16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody"]
