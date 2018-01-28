@@ -38,12 +38,21 @@ var player_action_pressed = false
 
 var player_can_fix = null
 
+var player_can_hit_truck = null
+
 var target = "GreenTarget"
 
 onready var player = self.get_node("Player")
 
+var is_stunned = false
+var stunned_at = 0
+
+onready var stun_sparks = get_node("RealTruck/Body/TruckHandle/GroundSparks")
+
 func _ready():
 	self.determine_inputs()
+	
+	stun_sparks.set_emitting(false)
 	
 	player_action_pressed = Input.is_joy_button_pressed(player_on_device, JOY_XBOX_A)
 	
@@ -61,10 +70,20 @@ func _ready():
 	self.get_node("Player/Node2D/Body/PlayerTriggerStatic").connect("body_enter", self, "player_trigger_body_enter")
 	self.get_node("Player/Node2D/Body/PlayerTriggerStatic").connect("body_exit", self, "player_trigger_body_exit")
 	
+	self.get_node("Player/Node2D/Body/PlayerTriggerStatic").connect("area_enter", self, "player_trigger_area_enter")
+	self.get_node("Player/Node2D/Body/PlayerTriggerStatic").connect("area_exit", self, "player_trigger_area_exit")
+	
 	self.set_fixed_process(true)
 
+func player_trigger_area_enter(area):
+	if area.get_name() == "TruckHandle" and area != get_node("RealTruck/Body/TruckHandle"):
+		player_can_hit_truck = area.get_parent().get_parent().get_parent()
+
+func player_trigger_area_exit(area):
+	if area.get_name() == "TruckHandle" and area != get_node("RealTruck/Body/TruckHandle"):
+		player_can_hit_truck = null
+
 func player_trigger_body_enter(body):
-	print(body.get_name(), self.target)
 	if body.get_name() == self.target:
 		player_can_fix = body
 		
@@ -111,6 +130,9 @@ func process_boom(delta):
 	if player.is(player.STATES.action) and player_action_pressed and player_can_fix != null:
 		if player_can_fix.get_parent().pole_index - 1 == player.last_fixed and !player_can_fix.get_parent().targets[self.target]["fixed"]:
 			player.set_state(player.STATES.fixing, player_can_fix)
+		
+	if player.is(player.STATES.action) and player_action_pressed and player_can_hit_truck != null:
+		player_can_hit_truck.stun()
 	
 	if (abs(joy_up) > .3) and !player.is(player.STATES.stunned):
 		var boom_hook = get_node("./RealTruck/BoomHook")
@@ -150,17 +172,30 @@ func process_boom(delta):
 		
 		boom.set_rotd(new_rotd)
 
+func stun():
+	if is_stunned:
+		return
+	
+	is_stunned = true
+	stunned_at = OS.get_ticks_msec()
+	
+	stun_sparks.set_emitting(true)
+
 func process_default(delta):
 	var forward_acceleration_modifier = Input.get_joy_axis(truck_on_device, JOY_AXIS_7)
 	var reverse_acceleration_modifier = Input.get_joy_axis(truck_on_device, JOY_AXIS_6)
 	
-	if (forward_acceleration_modifier > .2):
+	if OS.get_ticks_msec() - stunned_at > 2500:
+		is_stunned = false
+		stun_sparks.set_emitting(false)
+	
+	if (forward_acceleration_modifier > .2) and !is_stunned:
 		if (self.velocity.x > 0):
 			self.velocity.x += self.acceleration * forward_acceleration_modifier * delta
 		else:
 			self.velocity.x += self.acceleration * 1.5 * forward_acceleration_modifier * delta
 		
-	if (reverse_acceleration_modifier > .2):
+	if (reverse_acceleration_modifier > .2) and !is_stunned:
 		if (self.velocity.x > 0):
 			self.velocity.x -= self.braking_acceleration * reverse_acceleration_modifier * delta
 		else:
