@@ -4,6 +4,7 @@ onready var globals = get_node('/root/globals')
 
 var Ground = preload("res://Ground.tscn")
 var UtilityPole = preload("res://UtilityPole.tscn")
+var Garbage = preload("res://Garbage.tscn")
 var Line = preload("res://line.tscn")
 
 export(int) var screens = 10
@@ -76,6 +77,15 @@ func generate_level():
 		screen.set_global_pos(pos)
 		
 		terrain.append(screen)
+		
+		var garbage_chance = int(rand_range(0,4))
+		if garbage_chance == 2 or garbage_chance == 0:
+			print("ADDING GARBAGE")
+			var garbage = Garbage.instance()
+			garbage.set_z_as_relative(2)
+			garbage.set_pos(Vector2(rand_range(200, 1700) + (i*1918), -40))
+			
+			self.add_child(garbage)
 		
 		for p in range(pole_density):
 			var pole = build_pole()
