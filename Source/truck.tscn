@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://truck.gd" type="Script" id=1]
 [ext_resource path="res://media/temp_art/truck001/TruckBody.png" type="Texture" id=2]
@@ -11,16 +11,17 @@
 [ext_resource path="res://media/temp_art/truck001/WheelTireBackRight.png" type="Texture" id=9]
 [ext_resource path="res://media/temp_art/truck001/WeelRimBackRight.png" type="Texture" id=10]
 [ext_resource path="res://media/temp_art/truck001/TruckHandle.png" type="Texture" id=11]
-[ext_resource path="res://media/temp_art/truck001/InnerBoom.png" type="Texture" id=12]
-[ext_resource path="res://media/temp_art/truck001/OuterBoom.png" type="Texture" id=13]
-[ext_resource path="res://realtether.gd" type="Script" id=14]
-[ext_resource path="res://media/temp_art/truck001/InnerBoomKnuckle.png" type="Texture" id=15]
-[ext_resource path="res://player.tscn" type="PackedScene" id=16]
+[ext_resource path="res://GroundSparks.tscn" type="PackedScene" id=12]
+[ext_resource path="res://media/temp_art/truck001/InnerBoom.png" type="Texture" id=13]
+[ext_resource path="res://media/temp_art/truck001/OuterBoom.png" type="Texture" id=14]
+[ext_resource path="res://realtether.gd" type="Script" id=15]
+[ext_resource path="res://media/temp_art/truck001/InnerBoomKnuckle.png" type="Texture" id=16]
+[ext_resource path="res://player.tscn" type="PackedScene" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 40, 20 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
@@ -124,7 +125,6 @@ texture = ExtResource( 10 )
 
 [node name="TruckHandle" type="Area2D" parent="RealTruck/Body"]
 
-editor/display_folded = true
 transform/pos = Vector2( 52.3732, 104.363 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -147,6 +147,10 @@ offset = Vector2( -22.4424, 0.432007 )
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
+
+[node name="GroundSparks" parent="RealTruck/Body/TruckHandle" instance=ExtResource( 12 )]
+
+color/color = Color( 0.972656, 0.524323, 0, 1 )
 
 [node name="BoomShaft" type="KinematicBody2D" parent="RealTruck"]
 
@@ -179,7 +183,7 @@ _update_shape_index = 0
 [node name="BoomInner" type="Sprite" parent="RealTruck/BoomShaft/BoomArm"]
 
 transform/pos = Vector2( -285.167, -1.29654 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 offset = Vector2( 289.167, 0 )
 
 [node name="BoomOuter" type="Sprite" parent="RealTruck/BoomShaft"]
@@ -187,7 +191,7 @@ offset = Vector2( 289.167, 0 )
 transform/pos = Vector2( 0.891846, 2.79001 )
 z/z = 3
 z/relative = false
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 centered = false
 offset = Vector2( -33.5193, -28.7435 )
 
@@ -211,7 +215,7 @@ length = 125.0
 rest_length = 40.0
 stiffness = 15.0
 damping = 0.84989
-script/script = ExtResource( 14 )
+script/script = ExtResource( 15 )
 
 [node name="BoomHook" type="KinematicBody2D" parent="RealTruck"]
 
@@ -230,7 +234,7 @@ collision/margin = 0.08
 transform/pos = Vector2( -1.12317, -0.438965 )
 z/z = 4
 z/relative = false
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 
 [node name="Shape" type="CollisionShape2D" parent="RealTruck/BoomHook"]
 
@@ -240,9 +244,10 @@ shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
-[node name="Player" parent="." instance=ExtResource( 16 )]
+[node name="Player" parent="." instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 259.159, -168.593 )
+z/z = 8
 mode = 2
 gravity_scale = 0.8
 
