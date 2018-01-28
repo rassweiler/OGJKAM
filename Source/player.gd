@@ -75,6 +75,8 @@ func set_state(state, opt):
 	elif state == STATES.action:
 		get_node("Character01AP").play("Action")
 		get_node("Character01AP").connect("finished", self, "animation_finished")
+	elif state == STATES.attack:
+		get_node("SamplePlayer2D").play("Punch")
 
 func is(check_state):
 	return self.state == check_state
