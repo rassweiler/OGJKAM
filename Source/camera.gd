@@ -27,17 +27,17 @@ func _process(delta):
 			cam_speed *= -1
 		
 		if (abs(new_pos.x - self.goal_pos.x) < abs(cam_speed * delta)):
-			new_pos.x =  self.goal_pos.x
+			new_pos.x = self.goal_pos.x
 		else:
 			new_pos.x += cam_speed * delta
 		
 		cam_speed = CAMSPEED
 		
-		if (new_pos.y >  self.goal_pos.y):
+		if (new_pos.y > self.goal_pos.y):
 			cam_speed *= -1
 		
-		if (abs(new_pos.y -  self.goal_pos.y) < abs(cam_speed * delta)):
-			new_pos.y =  self.goal_pos.y
+		if (abs(new_pos.y - self.goal_pos.y) < abs(cam_speed * delta)):
+			new_pos.y = self.goal_pos.y
 		else:
 			new_pos.y += cam_speed * delta
 	
@@ -45,13 +45,13 @@ func _process(delta):
 	if (current_zoom != self.goal_zoom):
 		var new_zoom = current_zoom
 		
-		if (new_zoom.x >  self.goal_zoom.x):
+		if (new_zoom.x > self.goal_zoom.x):
 			cam_zoom_speed *= -1
 		new_zoom.x += cam_zoom_speed * delta
 		new_zoom.y += cam_zoom_speed * delta
 		
 		if (abs(new_zoom.x -  self.goal_zoom.x) < abs(cam_zoom_speed * delta)):
-			new_zoom =  self.goal_zoom
+			new_zoom = self.goal_zoom
 		
 		self.set_zoom(new_zoom)
 	
@@ -62,7 +62,7 @@ func _process(delta):
 		#self.get_parent().get_node("truck1/Player")
 	]
 	
-	self.shape = Rect2(10000, 10000, -10000, -10000)
+	self.shape = Rect2(100000, 100000, -100000, -100000)
 	
 	var minx = 10000
 	var miny = 10000
@@ -79,7 +79,8 @@ func _process(delta):
 		
 		self.shape = Rect2(minx, miny, maxx - minx, maxy - miny)
 		
-	self.shape = self.shape.grow(500)
+	self.shape = self.shape.grow(100)
+	self.shape.size.x += 500
 	
 	var start = self.shape.pos
 	var end = self.shape.end

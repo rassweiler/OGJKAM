@@ -90,7 +90,7 @@ func set_state(state):
 	self.state_change_at = OS.get_ticks_msec()
 
 func process_boom(delta):
-	var joy_up = Input.get_joy_axis(player_on_device, JOY_AXIS_3)
+	var joy_up = Input.get_joy_axis(player_on_device, JOY_AXIS_1)
 	
 	var action_down = Input.is_joy_button_pressed(player_on_device, JOY_XBOX_A)
 	
@@ -156,7 +156,7 @@ func process_default(delta):
 		self.velocity.x += natural_brake * delta
 	
 	var position = self.real_truck.get_pos()
-	position.x += clamp(self.velocity.x, -self.max_speed/2, self.max_speed) * delta
+	position.x += clamp(self.velocity.x, -self.max_speed/2, self.max_speed*2) * delta
 	#position.y = 0
 	#get_node("Player").apply_impulse(get_node("Player").get_global_pos(), velocity)
 	
@@ -176,11 +176,6 @@ func process_default(delta):
 	var level = globals.current_scene.get_node("Level")
 		
 	#position.x = clamp(position.x, level.min_x, level.max_x)
-
-	var p1 = level.min_x
-	var p2 = level.max_x
-	#var position = position
-	var gpos = self.real_truck.get_global_pos()
 
 	self.real_truck.set_pos(position)
 

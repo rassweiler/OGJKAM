@@ -11,6 +11,7 @@ export(int) var pole_density = 1
 export(int) var pole_x_variance = 200
 
 var terrain = []
+var filler_terrain = []
 var poles = []
 
 var lines = []
@@ -62,12 +63,17 @@ func check_lines():
 	
 
 func generate_level():
+	for i in range(1,10):
+		var road = build_screen()
+		road.set_global_pos(Vector2(-(i*1920), 560))
+		
+	
 	for i in range(screens):
 		var screen = build_screen()
 		
-		var pos = Vector2((i * 1912), 560)
+		var pos = Vector2((i * 1920), 560)
 		
-		screen.set_pos(pos)
+		screen.set_global_pos(pos)
 		
 		terrain.append(screen)
 		
@@ -89,7 +95,11 @@ func generate_level():
 			poles.append(pole)
 	
 	min_x = terrain[0].get_global_pos().x
-	max_x = terrain[-1].get_global_pos().x + 1920
+	max_x = screens*1920 + 1920
+	
+	for i in range(0,10):
+		var road = build_screen()
+		road.set_global_pos(Vector2((i*1920) + max_x, 560))
 
 func _ready():
 	# Called every time the node is added to the scene.

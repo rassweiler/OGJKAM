@@ -182,10 +182,10 @@ texture = ExtResource( 12 )
 
 [node name="BoomOuter" type="Sprite" parent="RealTruck/BoomShaft"]
 
-transform/pos = Vector2( -55.9099, 1.45761 )
+transform/pos = Vector2( -44.3906, 1.20114 )
 texture = ExtResource( 13 )
 centered = false
-offset = Vector2( -22.0901, -29.4575 )
+offset = Vector2( -33.5193, -28.7435 )
 
 [node name="PinJoint2D" type="PinJoint2D" parent="RealTruck/BoomShaft"]
 
@@ -211,11 +211,11 @@ script/script = ExtResource( 14 )
 
 [node name="BoomHook" type="KinematicBody2D" parent="RealTruck"]
 
-transform/pos = Vector2( 243.43, -406.105 )
+transform/pos = Vector2( 248.197, -404.516 )
 z/z = -1
 input/pickable = false
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -2.16138, -1.08069 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -319.78, 1.07022 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -223,7 +223,7 @@ collision/margin = 0.08
 
 [node name="Shape" type="CollisionShape2D" parent="RealTruck/BoomHook"]
 
-transform/pos = Vector2( -2.16138, -1.08069 )
+transform/pos = Vector2( -319.78, 1.07022 )
 z/z = -1
 shape = SubResource( 2 )
 trigger = false
