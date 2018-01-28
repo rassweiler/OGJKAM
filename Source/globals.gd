@@ -36,6 +36,14 @@ func addPlayer(device_id, team, position):
 
 func _ready():
 	self.current_scene = get_tree().get_current_scene()
+	
+	var slist = get_node("/root/MusicPlayer").get_sample_library().get_sample_list()
+	
+	randomize()
+	var index = randi() % slist.size()
+	
+	get_node("/root/MusicPlayer").play(slist[index])
+	
 
 func goto_scene(path):
 	# This function will usually be called from a signal callback,

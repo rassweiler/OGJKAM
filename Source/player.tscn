@@ -18,7 +18,7 @@
 [ext_resource path="res://media/temp_art/character/FootLeft.png" type="Texture" id=16]
 [ext_resource path="res://animations/Idle.tres" type="Animation" id=17]
 
-[sub_resource type="CapsuleShape2D" id=3]
+[sub_resource type="CapsuleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 10.003
@@ -32,7 +32,7 @@ radius = 40.0
 [node name="Player" type="RigidBody2D"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 0.762134, 0.647419, -0.647419, 0.762134, -1.62882, 8.67467 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -182,7 +182,7 @@ _update_shape_index = 0
 
 transform/pos = Vector2( -1.62882, 8.67467 )
 transform/rot = -40.3473
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 

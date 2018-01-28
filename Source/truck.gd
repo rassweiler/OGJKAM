@@ -47,9 +47,17 @@ func _ready():
 	
 	player_action_pressed = Input.is_joy_button_pressed(player_on_device, JOY_XBOX_A)
 	
+	var sprites = ["RealTruck/Pivot", "RealTruck/Body", "RealTruck/BoomShaft/BoomArm/BoomInner", "RealTruck/BoomShaft/BoomOuter", "RealTruck/BoomHook/InnerBoomKnuckle", "Player/Node2D/Body"]
+	
+	var mod_color = Color(.1, 1, .3, .7)
 	if team == 1:
 		self.target = "PinkTarget"
-	
+		mod_color = Color(1, .1, .6, .7)
+		
+	for s in sprites:
+			var sprite = get_node(s)
+			sprite.set_modulate(mod_color)
+		
 	self.get_node("Player/Node2D/Body/PlayerTriggerStatic").connect("body_enter", self, "player_trigger_body_enter")
 	self.get_node("Player/Node2D/Body/PlayerTriggerStatic").connect("body_exit", self, "player_trigger_body_exit")
 	
@@ -58,12 +66,10 @@ func _ready():
 func player_trigger_body_enter(body):
 	print(body.get_name(), self.target)
 	if body.get_name() == self.target:
-		print("IN TARGET")
 		player_can_fix = body
 		
 func player_trigger_body_exit(body):
 	if body.get_name() == self.target:
-		print("OUT TARGET")
 		player_can_fix = null
 	
 func determine_inputs():
@@ -115,6 +121,12 @@ func process_boom(delta):
 		
 		var new_rotd = boom.get_rotd() - ((15 * delta) * sign(joy_up))
 		var x = shape_extents.x * 2; #x
+		
+		if new_rotd > 70:
+			new_rotd = 70
+			
+		if new_rotd < -43:
+			new_rotd = -43
 		
 		#var y_deg = 180 - (new_rotd + 90)
 		
