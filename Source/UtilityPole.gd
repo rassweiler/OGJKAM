@@ -15,7 +15,7 @@ var targets = {
 
 func randomize_goals():
 	randomize()
-	var location = rand_range(-100, -450)
+	var location = rand_range(-50, -350)
 	var gap = rand_range(60, 100)
 	var which = rand_range(0, 2)
 	

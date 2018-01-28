@@ -104,7 +104,7 @@ func process_boom(delta):
 		if player_can_fix.get_parent().pole_index - 1 == player.last_fixed and !player_can_fix.get_parent().targets[self.target]["fixed"]:
 			player.set_state(player.STATES.fixing, player_can_fix)
 	
-	if (abs(joy_up) > .3):
+	if (abs(joy_up) > .3) and !player.is(player.STATES.stunned):
 		var boom_hook = get_node("./RealTruck/BoomHook")
 		var boom_arm = get_node("./RealTruck/BoomShaft/BoomArm")
 		var boom = get_node("./RealTruck/BoomShaft")
