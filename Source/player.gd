@@ -5,6 +5,8 @@ export(int) var speed = 20
 
 onready var globals = get_node('/root/globals')
 
+var Sparks = preload("res://GroundSparks.tscn")
+
 enum STATES {
 	default,
 	attack,
@@ -60,6 +62,9 @@ func can_stun():
 func set_state(state, opt):
 	if self.state == STATES.stunned and state != STATES.default:
 		return
+	elif self.state == STATES.stunned:
+		if ground_sparks != null:
+			ground_sparks.set_emitting(false)
 	
 	self.state = state
 	self.state_change_at = OS.get_ticks_msec()
@@ -107,9 +112,18 @@ func fixed_box():
 	self.get_parent().get_parent().get_node("Level").check_lines()
 	self.fixing_box = null
 
+var ground_sparks = null
+
 func _fixed_process(delta):
 	for body in self.get_colliding_bodies():
 		if body.get_name() == "GroundBox" and self.can_stun():
+			if ground_sparks == null:
+				ground_sparks = Sparks.instance()
+				ground_sparks.set_z(5)
+				ground_sparks.set_pos(Vector2(0,0))
+				self.add_child(ground_sparks)
+			
+			ground_sparks.set_emitting(true)
 			self.set_state(STATES.stunned, null)
 	
 	if (state == STATES.default):

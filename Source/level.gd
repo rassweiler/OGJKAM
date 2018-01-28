@@ -65,13 +65,13 @@ func check_lines():
 func generate_level():
 	for i in range(1,10):
 		var road = build_screen()
-		road.set_global_pos(Vector2(-(i*1920), 560))
+		road.set_global_pos(Vector2(-(i*1918), -200))
 		
 	
 	for i in range(screens):
 		var screen = build_screen()
 		
-		var pos = Vector2((i * 1920), 560)
+		var pos = Vector2((i * 1918), -200)
 		
 		screen.set_global_pos(pos)
 		
@@ -80,7 +80,7 @@ func generate_level():
 		for p in range(pole_density):
 			var pole = build_pole()
 			
-			var pole_pos = Vector2(1920.0/self.pole_density, -400)
+			var pole_pos = Vector2(1920.0/self.pole_density, -470)
 			pole_pos.x *= p
 			
 			randomize()
@@ -99,7 +99,7 @@ func generate_level():
 	
 	for i in range(0,10):
 		var road = build_screen()
-		road.set_global_pos(Vector2((i*1920) + max_x - 1920, 560))
+		road.set_global_pos(Vector2((i*1918) + max_x - 2200, -200))
 
 func _ready():
 	# Called every time the node is added to the scene.

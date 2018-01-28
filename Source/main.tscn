@@ -9,7 +9,7 @@
 
 [node name="Camera" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( 1152.52, 440.067 )
+transform/pos = Vector2( 980.137, -347.303 )
 current = true
 drag_margin/h_enabled = false
 drag_margin/v_enabled = false
@@ -23,11 +23,11 @@ pole_x_variance = 200
 
 [node name="truck" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 645.742, 790.469 )
+transform/pos = Vector2( 473.359, 3.09949 )
 
 [node name="truck1" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 643.464, 873.349 )
+transform/pos = Vector2( 471.081, 85.9795 )
 team = 1
 
 

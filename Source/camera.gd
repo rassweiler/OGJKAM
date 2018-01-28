@@ -70,7 +70,7 @@ func _process(delta):
 	var maxy = 0
 	
 	for p in points:
-		var pos = p.get_pos()
+		var pos = p.get_global_pos()
 		
 		minx = min(shape.pos.x, pos.x)
 		miny = min(shape.pos.y, pos.y)
