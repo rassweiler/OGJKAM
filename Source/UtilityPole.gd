@@ -30,13 +30,16 @@ func randomize_goals():
 
 func complete():
 	targets["GreenTarget"]["fixed"] = true
-	get_node("GreenTarget").set("visibility/visible", false)
+	get_node("GreenTarget/Target").set("visibility/visible", false)
+	get_node("GreenTarget/Support").set("visibility/visible", true)
 	targets["PinkTarget"]["fixed"] = true
-	get_node("PinkTarget").set("visibility/visible", false)
+	get_node("PinkTarget/Target").set("visibility/visible", false)
+	get_node("PinkTarget/Support").set("visibility/visible", true)
 
 func fixed(box, player):
 	targets[box.get_name()]["fixed"] = true
-	box.set("visibility/visible", false)
+	box.get_node("Target").set("visibility/visible", false)
+	box.get_node("Support").set("visibility/visible", true)
 	get_node("SamplePlayer2D").play("FixCompleted")
 	globals.game_state.team_scored(player.get_parent().team)
 

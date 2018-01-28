@@ -41,8 +41,17 @@ func _ready():
 	get_node("Node2D/Body/PlayerTriggerStatic").connect("body_exit", self, "on_body_exit")
 	get_node("Character01AP").play("Idle")
 	var level = globals.current_scene.get_node("Level")
+	get_node("Character01AP").connect("finished", self, "animation_finished")
+	
+	var team = self.get_parent().team
+	
+	var pole_target = "GreenTarget"
+	if team == 1:
+		pole_target = "PinkTarget"
+
 	if level != null:
-		initial_tether = level.poles[0].get_global_pos()
+		initial_tether = level.poles[0].get_node(pole_target).get_global_pos()
+
 	
 	self.set_fixed_process(true)
 
@@ -76,7 +85,6 @@ func set_state(state, opt):
 		self.fixing_pos = self.get_pos()
 	elif state == STATES.action:
 		get_node("Character01AP").play("Action")
-		get_node("Character01AP").connect("finished", self, "animation_finished")
 	elif state == STATES.attack:
 		get_node("SamplePlayer2D").play("Punch")
 
@@ -175,7 +183,10 @@ func _draw():
 	draw_line(start, self.get_global_pos(), color, 4)
 	
 func animation_finished():
-	get_node("Character01AP").play("Idle")
+	if self.state == STATES.fixing:
+		get_node("Character01AP").play("Action")
+	else:
+		get_node("Character01AP").play("Idle")
 	#var color = null 
 	#if self.state == STATES.action:
 	#	color = Color(255, 0, 0)
