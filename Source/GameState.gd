@@ -19,6 +19,8 @@ func set_pole_count(count):
 func reset_game():
 	for i in range(2):
 		team_state[i]["score"] = 0
+	
+	winner = null
 
 func team_scored(team):
 	team_state[team]["score"] += 1
