@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://menu.gd" type="Script" id=1]
 [ext_resource path="res://media/temp_art/menu/MainMenuBackground.png" type="Texture" id=2]
@@ -9,8 +9,9 @@
 [ext_resource path="res://media/temp_art/menu/Player002.png" type="Texture" id=7]
 [ext_resource path="res://media/temp_art/menu/Player003.png" type="Texture" id=8]
 [ext_resource path="res://media/temp_art/menu/Player004.png" type="Texture" id=9]
-[ext_resource path="res://media/temp_art/character/Character001.png" type="Texture" id=10]
-[ext_resource path="res://media/temp_art/truck001/Truck001.png" type="Texture" id=11]
+[ext_resource path="res://player.tscn" type="PackedScene" id=10]
+[ext_resource path="res://media/temp_art/character/Character001.png" type="Texture" id=11]
+[ext_resource path="res://media/temp_art/truck001/Truck001.png" type="Texture" id=12]
 
 [node name="Control" type="Control"]
 
@@ -41,6 +42,7 @@ stretch_mode = 0
 
 [node name="Players" type="Control" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -52,6 +54,7 @@ margin/bottom = 40.0
 
 [node name="Player01" type="Control" parent="Players"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -126,6 +129,7 @@ color/color = Color( 1, 1, 0, 1 )
 
 [node name="Player02" type="Control" parent="Players"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -368,17 +372,26 @@ margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
 
+[node name="Player" parent="Positions/Team01" instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 1572.83, 358.619 )
+transform/scale = Vector2( 2, 2 )
+gravity_scale = 0.0
+gravity = 0
+speed = 0
+
 [node name="Character001" type="Sprite" parent="Positions/Team01"]
 
+visibility/visible = false
 transform/pos = Vector2( 1518.12, 369.406 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 modulate = Color( 0.345098, 0.898039, 0.231373, 1 )
 
 [node name="Truck001" type="Sprite" parent="Positions/Team01"]
 
 transform/pos = Vector2( 1102.33, 360.317 )
 transform/scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 modulate = Color( 0.346236, 0.898438, 0.231628, 1 )
 
 [node name="TruckSnap" type="Node2D" parent="Positions/Team01"]
@@ -400,17 +413,26 @@ margin/top = 0.0
 margin/right = 40.0
 margin/bottom = 40.0
 
+[node name="Player" parent="Positions/Team02" instance=ExtResource( 10 )]
+
+transform/pos = Vector2( 1572.83, 808.619 )
+transform/scale = Vector2( 2, 2 )
+gravity_scale = 0.0
+gravity = 0
+speed = 0
+
 [node name="Character2" type="Sprite" parent="Positions/Team02"]
 
+visibility/visible = false
 transform/pos = Vector2( 1506.76, 837.134 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 modulate = Color( 0.87451, 0.231373, 0.898039, 1 )
 
 [node name="Truck2" type="Sprite" parent="Positions/Team02"]
 
 transform/pos = Vector2( 1090.97, 828.045 )
 transform/scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 modulate = Color( 0.8776, 0.231628, 0.898438, 1 )
 
 [node name="TruckSnap" type="Node2D" parent="Positions/Team02"]

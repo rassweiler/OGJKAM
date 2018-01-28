@@ -31,7 +31,7 @@ onready var state_change_at = OS.get_ticks_msec()
 
 var last_stunned_at = 0
 
-var initial_tether = Vector2()
+var initial_tether = null
 
 var touching_other_player = false
 var other_player = null
@@ -40,7 +40,9 @@ func _ready():
 	get_node("Node2D/Body/PlayerTriggerStatic").connect("body_enter", self, "on_body_enter")
 	get_node("Node2D/Body/PlayerTriggerStatic").connect("body_exit", self, "on_body_exit")
 	get_node("Character01AP").play("Idle")
-	initial_tether = globals.current_scene.get_node("Level").poles[0].get_global_pos()
+	var level = globals.current_scene.get_node("Level")
+	if level != null:
+		initial_tether = level.poles[0].get_global_pos()
 	
 	self.set_fixed_process(true)
 
@@ -159,6 +161,9 @@ func _fixed_process(delta):
 	update()
 
 func _draw():
+	if initial_tether == null: #in menu
+		return
+		
 	var color = Color(1, .5, .5, .4)
 	if self.get_parent().team == 0:
 		color = Color(.1, 1, .2, .4)
