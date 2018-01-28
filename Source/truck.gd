@@ -70,7 +70,7 @@ func determine_inputs():
 	var players = globals.playersForTeam(self.team)
 	
 	if players.size() == 0:
-		if team == 0 or team == 1:
+		if team == 0:
 			truck_on_device = 0
 			player_on_device = 0
 		return
@@ -124,7 +124,13 @@ func process_boom(delta):
 		
 		var diff = hypotenuse - x
 		
-		boom_arm.set_pos(Vector2(diff+236, boom_arm.get_pos().y))
+		#boom_arm.set_pos(Vector2(diff+236, boom_arm.get_pos().y))
+		#boom_arm.get_node("InnerBoomKnuckle").set_pos(Vector2(diff+236, boom_arm.get_pos().y))
+		
+		var tw = boom_arm.get_node("BoomInner").get_texture().get_size()
+		var scale = (hypotenuse/tw.x)
+
+		boom_arm.get_node("BoomInner").set_scale(Vector2(scale, 1))
 		
 		var cpos = boom_hook.get_pos()
 		cpos.y = boom.get_pos().y - y
