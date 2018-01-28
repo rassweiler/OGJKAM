@@ -72,6 +72,9 @@ func set_state(state, opt):
 	if state == STATES.fixing:
 		self.fixing_box = opt
 		self.fixing_pos = self.get_pos()
+	elif state == STATES.action:
+		get_node("Character01AP").play("Action")
+		get_node("Character01AP").connect("finished", self, "animation_finished")
 
 func is(check_state):
 	return self.state == check_state
@@ -164,7 +167,8 @@ func _draw():
 		start = self.last_fixed_instance.get_global_pos()
 	draw_line(start, self.get_global_pos(), color, 4)
 	
-	
+func animation_finished():
+	get_node("Character01AP").play("Idle")
 	#var color = null 
 	#if self.state == STATES.action:
 	#	color = Color(255, 0, 0)
