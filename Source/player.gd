@@ -20,6 +20,8 @@ var velocity = Vector2()
 
 var fixing_pos = Vector2()
 
+var last_fixed_instance = null
+
 onready var state_change_at = OS.get_ticks_msec()
 
 func _ready():
@@ -58,8 +60,12 @@ func action_released():
 
 func fixed_box():
 	self.set_state(STATES.default, null)
-	self.fixing_box.get_parent().fixed(self.fixing_box)
+	self.fixing_box.get_parent().fixed(self.fixing_box, self)
 	self.last_fixed = self.fixing_box.get_parent().pole_index
+	self.last_fixed_instance = self.fixing_box.get_parent()
+	var line = self.get_parent().get_parent().get_node("Level").get_line_for_team(self.get_parent().team)
+	line.add_pole(self.fixing_box.get_parent(), self.fixing_box.get_global_pos().y - 200)
+	self.get_parent().get_parent().get_node("Level").check_lines()
 	self.fixing_box = null
 
 func _fixed_process(delta):

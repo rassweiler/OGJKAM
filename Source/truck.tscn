@@ -24,10 +24,10 @@ extents = Vector2( 10, 10 )
 
 transform/scale = Vector2( 0.5, 0.5 )
 script/script = ExtResource( 1 )
-max_speed = 400
-acceleration = 200
+max_speed = 560
+acceleration = 210
 reverse_acceleration = 100
-braking_acceleration = 900
+braking_acceleration = 1400
 slowdown = 40
 boom_max_speed = 250
 boom_acceleration = 70

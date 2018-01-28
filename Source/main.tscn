@@ -1,13 +1,11 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://media/temp_art/level001/Background.png" type="Texture" id=1]
 [ext_resource path="res://camera.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Truck.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Ground.tscn" type="PackedScene" id=4]
-[ext_resource path="res://media/temp_art/level001/Sun.png" type="Texture" id=5]
-[ext_resource path="res://UtilityPole.tscn" type="PackedScene" id=6]
-[ext_resource path="res://level.gd" type="Script" id=7]
-[ext_resource path="res://truck.tscn" type="PackedScene" id=8]
+[ext_resource path="res://media/temp_art/level001/Sun.png" type="Texture" id=3]
+[ext_resource path="res://level.gd" type="Script" id=4]
+[ext_resource path="res://Truck.tscn" type="PackedScene" id=5]
+[ext_resource path="res://truck.tscn" type="PackedScene" id=6]
 
 [node name="root" type="Node2D"]
 
@@ -23,38 +21,33 @@ current = true
 drag_margin/h_enabled = false
 drag_margin/v_enabled = false
 
-[node name="truck" parent="." instance=ExtResource( 3 )]
-
-transform/pos = Vector2( 1.7962, 1.19746 )
-max_speed = 400
-acceleration = 200
-reverse_acceleration = 100
-braking_acceleration = 900
-slowdown = 40
-
-[node name="Ground" parent="." instance=ExtResource( 4 )]
-
-visibility/visible = false
-
 [node name="Sun" type="Sprite" parent="."]
 
 transform/pos = Vector2( -700.438, -746.457 )
-texture = ExtResource( 5 )
-
-[node name="UtilityPole" parent="." instance=ExtResource( 6 )]
-
-visibility/visible = false
+texture = ExtResource( 3 )
 
 [node name="Level" type="Node2D" parent="."]
 
-script/script = ExtResource( 7 )
-screens = 20
+script/script = ExtResource( 4 )
+screens = 10
 pole_density = 1
 pole_x_variance = 200
 
-[node name="truck1" parent="." instance=ExtResource( 8 )]
+[node name="truck" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( 1.7962, 1.19746 )
+max_speed = 560
+acceleration = 210
+reverse_acceleration = 100
+braking_acceleration = 1400
+slowdown = 40
+
+[node name="truck1" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( -408.112, -1.36035 )
+max_speed = 560
+acceleration = 210
+braking_acceleration = 1400
 team = 1
 
 

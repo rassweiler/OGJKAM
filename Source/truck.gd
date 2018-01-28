@@ -2,16 +2,18 @@ extends Node2D
 
 onready var globals = get_node('/root/globals')
 
-export(int) var max_speed = 400
-export(int) var acceleration = 200
+export(int) var max_speed = 560
+export(int) var acceleration = 210
 export(int) var reverse_acceleration = 100
-export(int) var braking_acceleration = 900
+export(int) var braking_acceleration = 1400
 export(int) var slowdown = 40;
 
 export(int) var boom_max_speed = 250
 export(int) var boom_acceleration = 70
 
 export(int) var team = 0
+
+var team_points = 0
 
 var player_on_device = -1
 var truck_on_device = -1

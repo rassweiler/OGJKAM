@@ -1,5 +1,7 @@
 extends Sprite
 
+onready var globals = get_node('/root/globals')
+
 var pole_index = -1
 
 var targets = {
@@ -26,9 +28,11 @@ func randomize_goals():
 	tpos = order[1].get_pos()
 	order[1].set_pos(Vector2(tpos.x, location - gap))
 	
-func fixed(box):
+func fixed(box, player):
 	targets[box.get_name()]["fixed"] = true
 	box.set("visibility/visible", false)
+	
+	globals.game_state.team_scored(player.get_parent().team)
 
 func _ready():
 	randomize_goals()

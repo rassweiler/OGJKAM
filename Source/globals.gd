@@ -3,6 +3,9 @@ extends Node
 var players = []
 
 const PlayerInfo = preload("PlayerInfo.gd")
+const GameState = preload("GameState.gd")
+
+onready var game_state = GameState.new()
 
 var current_scene = null
 
@@ -42,6 +45,7 @@ func goto_scene(path):
 	# The worst case will be a crash or unexpected behavior.
 	# The way around this is deferring the load to a later time, when
 	# it is ensured that no code from the current scene is running:
+	game_state.reset_game()
 	call_deferred("_deferred_goto_scene",path)
 
 func _deferred_goto_scene(path):
