@@ -26,11 +26,6 @@ drag_margin/v_enabled = false
 [node name="truck" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 1.7962, 1.19746 )
-max_speed = 400
-acceleration = 200
-reverse_acceleration = 100
-braking_acceleration = 900
-slowdown = 40
 
 [node name="Ground" parent="." instance=ExtResource( 4 )]
 
