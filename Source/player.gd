@@ -7,7 +7,8 @@ enum STATES {
 	default,
 	attack,
 	action,
-	fixing
+	fixing,
+	stunned
 }
 
 var fixing_box = null
@@ -23,6 +24,8 @@ var fixing_pos = Vector2()
 var last_fixed_instance = null
 
 onready var state_change_at = OS.get_ticks_msec()
+
+var last_stunned_at = 0
 
 var touching_other_player = false
 var other_player = null
@@ -43,7 +46,15 @@ func on_body_exit(body):
 		self.touching_other_player = false
 		self.other_player = null
 
+func can_stun():
+	if OS.get_ticks_msec() - last_stunned_at > 2500:
+		return true
+	return false
+
 func set_state(state, opt):
+	if self.state == STATES.stunned and state != STATES.default:
+		return
+	
 	self.state = state
 	self.state_change_at = OS.get_ticks_msec()
 	
@@ -52,7 +63,7 @@ func set_state(state, opt):
 		self.fixing_pos = self.get_pos()
 
 func is(check_state):
-	return self.state == STATES.action
+	return self.state == check_state
 
 func process_default(delta):
 	pass
@@ -86,6 +97,10 @@ func fixed_box():
 	self.fixing_box = null
 
 func _fixed_process(delta):
+	for body in self.get_colliding_bodies():
+		if body.get_name() == "GroundBox" and self.can_stun():
+			self.set_state(STATES.stunned, null)
+	
 	if (state == STATES.default):
 		process_default(delta)
 	elif (state == STATES.attack):
@@ -103,6 +118,10 @@ func _fixed_process(delta):
 		if touching_other_player:
 			self.set_state(STATES.attack, null)
 			self.other_player.apply_impulse(self.other_player.get_global_pos(), self.get_parent().velocity * 100)
+	elif (state == STATES.stunned):
+		if OS.get_ticks_msec() - self.state_change_at > 3000:
+			last_stunned_at = OS.get_ticks_msec()
+			self.set_state(STATES.default, null)
 	
 	#todo remove
 	update()

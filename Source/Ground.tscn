@@ -1,12 +1,36 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=4 format=1]
 
 [ext_resource path="res://media/temp_art/level001/Ground.png" type="Texture" id=1]
 [ext_resource path="res://Ground.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 960, 520 )
 
 [node name="Ground" type="Sprite"]
 
 transform/pos = Vector2( -31.4707, 578.583 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
+
+[node name="GroundBox" type="StaticBody2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundBox"]
+
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
 
 
