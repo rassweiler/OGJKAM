@@ -65,7 +65,7 @@ func generate_level():
 	for i in range(screens):
 		var screen = build_screen()
 		
-		var pos = Vector2((i * 1920) - 960, 560)
+		var pos = Vector2((i * 1912), 560)
 		
 		screen.set_pos(pos)
 		
@@ -88,8 +88,8 @@ func generate_level():
 			
 			poles.append(pole)
 	
-	min_x = terrain[0].get_pos().x
-	max_x = terrain[-1].get_pos().x + 1920
+	min_x = terrain[0].get_global_pos().x
+	max_x = terrain[-1].get_global_pos().x + 1920
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -118,5 +118,5 @@ func _ready():
 
 func _process(delta):
 	if globals.game_state.winner != null:
-		pass
+		globals.goto_scene("res://end_menu.tscn")
 

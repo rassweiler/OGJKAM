@@ -175,8 +175,13 @@ func process_default(delta):
 	
 	var level = globals.current_scene.get_node("Level")
 		
-	position.x = clamp(position.x, level.min_x, level.max_x)
-	
+	#position.x = clamp(position.x, level.min_x, level.max_x)
+
+	var p1 = level.min_x
+	var p2 = level.max_x
+	#var position = position
+	var gpos = self.real_truck.get_global_pos()
+
 	self.real_truck.set_pos(position)
 
 func _fixed_process(delta):
