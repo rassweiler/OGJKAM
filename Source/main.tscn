@@ -16,7 +16,7 @@ texture = ExtResource( 1 )
 
 [node name="Camera" parent="." instance=ExtResource( 2 )]
 
-transform/pos = Vector2( -42.7314, -307.783 )
+transform/pos = Vector2( 1152.52, -300.933 )
 current = true
 drag_margin/h_enabled = false
 drag_margin/v_enabled = false
@@ -35,7 +35,7 @@ pole_x_variance = 200
 
 [node name="truck" parent="." instance=ExtResource( 5 )]
 
-transform/pos = Vector2( 1.7962, 1.19746 )
+transform/pos = Vector2( 645.742, 72.4693 )
 max_speed = 560
 acceleration = 210
 reverse_acceleration = 100
@@ -44,7 +44,7 @@ slowdown = 40
 
 [node name="truck1" parent="." instance=ExtResource( 6 )]
 
-transform/pos = Vector2( -408.112, -1.36035 )
+transform/pos = Vector2( 643.464, 143.349 )
 team = 1
 
 

@@ -10,7 +10,7 @@ extents = Vector2( 960, 520 )
 
 [node name="Ground" type="Sprite"]
 
-transform/pos = Vector2( -31, 579 )
+transform/pos = Vector2( 960, 0 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
 

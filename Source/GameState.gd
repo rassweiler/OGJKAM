@@ -26,6 +26,8 @@ func team_scored(team):
 	check_game_state()
 
 func check_game_state():
+	print (team_state[0]["score"], "=>", num_poles)
+	print (team_state[1]["score"], "=>", num_poles)
 	if team_state[0]["score"] == num_poles:
 		winner = 0
 	elif team_state[1]["score"] == num_poles:

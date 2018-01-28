@@ -16,12 +16,12 @@
 [ext_resource path="res://realtether.gd" type="Script" id=14]
 [ext_resource path="res://player.tscn" type="PackedScene" id=15]
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
-radius = 40.0
+extents = Vector2( 10, 10 )
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 290, 10 )
@@ -29,7 +29,7 @@ extents = Vector2( 290, 10 )
 [sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+extents = Vector2( 250, 10 )
 
 [node name="Truck" type="Node2D"]
 
@@ -161,7 +161,7 @@ collision/margin = 0.08
 transform/pos = Vector2( 236.231, 0.565887 )
 z/z = 1
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 2
@@ -170,7 +170,7 @@ collision/margin = 0.08
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RealTruck/BoomShaft/BoomArm"]
 
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 trigger = false
 _update_shape_index = 0
 
