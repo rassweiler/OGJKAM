@@ -1,50 +1,33 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=5 format=1]
 
-[ext_resource path="res://media/temp_art/level001/Background.png" type="Texture" id=1]
-[ext_resource path="res://camera.tscn" type="PackedScene" id=2]
-[ext_resource path="res://media/temp_art/level001/Sun.png" type="Texture" id=3]
-[ext_resource path="res://level.gd" type="Script" id=4]
-[ext_resource path="res://Truck.tscn" type="PackedScene" id=5]
-[ext_resource path="res://truck.tscn" type="PackedScene" id=6]
+[ext_resource path="res://camera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://level.gd" type="Script" id=2]
+[ext_resource path="res://Truck.tscn" type="PackedScene" id=3]
+[ext_resource path="res://truck.tscn" type="PackedScene" id=4]
 
 [node name="root" type="Node2D"]
 
-[node name="Background" type="Sprite" parent="."]
+[node name="Camera" parent="." instance=ExtResource( 1 )]
 
-transform/pos = Vector2( 13.4346, -756.638 )
-texture = ExtResource( 1 )
-
-[node name="Camera" parent="." instance=ExtResource( 2 )]
-
-transform/pos = Vector2( 1152.52, -300.933 )
+transform/pos = Vector2( 1152.52, 440.067 )
 current = true
 drag_margin/h_enabled = false
 drag_margin/v_enabled = false
 
-[node name="Sun" type="Sprite" parent="."]
-
-transform/pos = Vector2( -700.438, -746.457 )
-texture = ExtResource( 3 )
-
 [node name="Level" type="Node2D" parent="."]
 
-script/script = ExtResource( 4 )
+script/script = ExtResource( 2 )
 screens = 10
 pole_density = 1
 pole_x_variance = 200
 
-[node name="truck" parent="." instance=ExtResource( 5 )]
+[node name="truck" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 645.742, 72.4693 )
-max_speed = 560
-acceleration = 210
-reverse_acceleration = 100
-braking_acceleration = 1400
-slowdown = 40
+transform/pos = Vector2( 645.742, 790.469 )
 
-[node name="truck1" parent="." instance=ExtResource( 6 )]
+[node name="truck1" parent="." instance=ExtResource( 4 )]
 
-transform/pos = Vector2( 643.464, 143.349 )
+transform/pos = Vector2( 643.464, 873.349 )
 team = 1
 
 
