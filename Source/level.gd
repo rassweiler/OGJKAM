@@ -98,11 +98,13 @@ func _ready():
 	
 	var first_pole = self.poles[0]
 	
+	first_pole.complete()
+	
 	var green_line = get_line_for_team(0)
 	var pink_line = get_line_for_team(1)
 	
-	green_line.add_pole(first_pole, first_pole.get_node("GreenTarget").get_global_pos().y - 200)
-	pink_line.add_pole(first_pole, first_pole.get_node("PinkTarget").get_global_pos().y - 200)
+	green_line.add_pole(first_pole, first_pole.get_node("GreenTarget").get_global_pos().y)
+	pink_line.add_pole(first_pole, first_pole.get_node("PinkTarget").get_global_pos().y)
 	
 	globals.game_state.set_pole_count(self.screens * self.pole_density)
 	

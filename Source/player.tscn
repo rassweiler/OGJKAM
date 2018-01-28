@@ -18,10 +18,11 @@
 [ext_resource path="res://media/temp_art/character/FootLeft.png" type="Texture" id=16]
 [ext_resource path="res://animations/Idle.tres" type="Animation" id=17]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="CapsuleShape2D" id=3]
 
 custom_solver_bias = 0.0
-extents = Vector2( 10, 10 )
+radius = 10.003
+height = 40.0
 
 [sub_resource type="CircleShape2D" id=2]
 
@@ -31,8 +32,8 @@ radius = 40.0
 [node name="Player" type="RigidBody2D"]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -6.28911, -6.74018 )
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 0.762134, 0.647419, -0.647419, 0.762134, -1.62882, 8.67467 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -61,7 +62,6 @@ transform/scale = Vector2( 0.5, 0.5 )
 
 [node name="Body" type="Sprite" parent="Node2D"]
 
-editor/display_folded = true
 transform/pos = Vector2( -14.2943, -11.9686 )
 transform/rot = -10.0
 z/z = 2
@@ -178,10 +178,11 @@ shape = SubResource( 2 )
 trigger = true
 _update_shape_index = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerBox" type="CollisionShape2D" parent="."]
 
-transform/pos = Vector2( -6.28911, -6.74018 )
-shape = SubResource( 1 )
+transform/pos = Vector2( -1.62882, 8.67467 )
+transform/rot = -40.3473
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 

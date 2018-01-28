@@ -45,9 +45,6 @@ slowdown = 40
 [node name="truck1" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( -408.112, -1.36035 )
-max_speed = 560
-acceleration = 210
-braking_acceleration = 1400
 team = 1
 
 
