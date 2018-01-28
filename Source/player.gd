@@ -37,7 +37,7 @@ var other_player = null
 func _ready():
 	get_node("Node2D/Body/PlayerTriggerStatic").connect("body_enter", self, "on_body_enter")
 	get_node("Node2D/Body/PlayerTriggerStatic").connect("body_exit", self, "on_body_exit")
-	
+	get_node("Character01AP").play("Idle")
 	initial_tether = globals.current_scene.get_node("Level").poles[0].get_global_pos()
 	
 	self.set_fixed_process(true)
