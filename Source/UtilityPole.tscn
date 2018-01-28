@@ -1,12 +1,74 @@
-[gd_scene load_steps=3 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://media/temp_art/level001/UtilityPole.png" type="Texture" id=1]
 [ext_resource path="res://UtilityPole.gd" type="Script" id=2]
+[ext_resource path="res://media/temp_art/level001/TargetBlue.png" type="Texture" id=3]
+[ext_resource path="res://media/temp_art/level001/TargetRed.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 60.0
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 60.0
 
 [node name="UtilityPole" type="Sprite"]
 
 transform/pos = Vector2( 129.071, -459.652 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
+
+[node name="GreenTarget" type="StaticBody2D" parent="."]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -10.9164, -216.455 )
+shapes/0/trigger = true
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="TargetBlue" type="Sprite" parent="GreenTarget"]
+
+transform/pos = Vector2( -10.9164, -216.455 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenTarget"]
+
+transform/pos = Vector2( -10.9164, -216.455 )
+shape = SubResource( 1 )
+trigger = true
+_update_shape_index = 0
+
+[node name="PinkTarget" type="StaticBody2D" parent="."]
+
+input/pickable = false
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -11.6412, -82.0844 )
+shapes/0/trigger = true
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="TargetRed" type="Sprite" parent="PinkTarget"]
+
+transform/pos = Vector2( -11.6412, -82.0844 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PinkTarget"]
+
+transform/pos = Vector2( -11.6412, -82.0844 )
+shape = SubResource( 2 )
+trigger = true
+_update_shape_index = 0
 
 

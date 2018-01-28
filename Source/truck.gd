@@ -2,11 +2,11 @@ extends Node2D
 
 onready var globals = get_node('/root/globals')
 
-export(int) var max_speed = 250
-export(int) var acceleration = 90
-export(int) var reverse_acceleration = 70
-export(int) var braking_acceleration = 500
-export(int) var slowdown = 30;
+export(int) var max_speed = 400
+export(int) var acceleration = 200
+export(int) var reverse_acceleration = 100
+export(int) var braking_acceleration = 900
+export(int) var slowdown = 40;
 
 export(int) var boom_max_speed = 250
 export(int) var boom_acceleration = 70
@@ -22,11 +22,13 @@ enum STATES {
 
 var state = STATES.default
 
-var velocity = Vector2()
+var velocity = Vector2(0, 0)
 
 onready var state_change_at = OS.get_ticks_msec()
-onready var wheel_left = self.get_node("WheelLeft")
-onready var wheel_right = self.get_node("WheelRight")
+onready var wheel_left = self.get_node("RealTruck/WheelLeft")
+onready var wheel_right = self.get_node("RealTruck/WheelRight")
+
+onready var real_truck = self.get_node("RealTruck")
 
 func _ready():
 	self.determine_inputs()
@@ -59,9 +61,9 @@ func process_boom(delta):
 	var joy_up = Input.get_joy_axis(player_on_device, JOY_AXIS_3)
 	
 	if (abs(joy_up) > .3):
-		var boom_hook = get_node("./BoomHook")
-		var boom = get_node("./BoomShaft")
-		var boom_arm_shape = get_node("BoomShaft/BoomArm/CollisionShape2D");
+		var boom_hook = get_node("./RealTruck/BoomHook")
+		var boom = get_node("./RealTruck/BoomShaft")
+		var boom_arm_shape = get_node("./RealTruck/BoomShaft/BoomArm/CollisionShape2D");
 		var shape_extents = boom_arm_shape.get_shape().get_extents()
 		
 		var new_rotd = boom.get_rotd() - ((5 * delta) * sign(joy_up))
@@ -100,10 +102,10 @@ func process_default(delta):
 		
 		self.velocity.x += natural_brake * delta
 	
-	var position = self.get_pos()
+	var position = self.real_truck.get_pos()
 	position.x += clamp(self.velocity.x, -self.max_speed, self.max_speed) * delta
-	
-	get_node("Player").apply_impulse(velocity, Vector2(1,1))
+	#position.y = 0
+	#get_node("Player").apply_impulse(get_node("Player").get_global_pos(), velocity)
 	
 	if (self.velocity.x > 0):
 		var mod = self.velocity.x / self.max_speed
@@ -114,7 +116,7 @@ func process_default(delta):
 		self.wheel_left.set_rotd(self.wheel_left.get_rotd() + 5 * mod)
 		self.wheel_right.set_rotd(self.wheel_right.get_rotd() + 5 * mod)
 	
-	self.set_pos(position)
+	self.real_truck.set_pos(position)
 
 func _fixed_process(delta):
 	if (state == STATES.default):

@@ -6,8 +6,8 @@
 [ext_resource path="res://Ground.tscn" type="PackedScene" id=4]
 [ext_resource path="res://media/temp_art/level001/Sun.png" type="Texture" id=5]
 [ext_resource path="res://UtilityPole.tscn" type="PackedScene" id=6]
-[ext_resource path="res://truck.tscn" type="PackedScene" id=7]
-[ext_resource path="res://level.gd" type="Script" id=8]
+[ext_resource path="res://level.gd" type="Script" id=7]
+[ext_resource path="res://truck.tscn" type="PackedScene" id=8]
 
 [node name="root" type="Node2D"]
 
@@ -26,6 +26,11 @@ drag_margin/v_enabled = false
 [node name="truck" parent="." instance=ExtResource( 3 )]
 
 transform/pos = Vector2( 1.7962, 1.19746 )
+max_speed = 400
+acceleration = 200
+reverse_acceleration = 100
+braking_acceleration = 900
+slowdown = 40
 
 [node name="Ground" parent="." instance=ExtResource( 4 )]
 
@@ -40,16 +45,16 @@ texture = ExtResource( 5 )
 
 visibility/visible = false
 
-[node name="truck1" parent="." instance=ExtResource( 7 )]
-
-transform/pos = Vector2( -404.585, -22.1295 )
-team = 1
-
 [node name="Level" type="Node2D" parent="."]
 
-script/script = ExtResource( 8 )
+script/script = ExtResource( 7 )
 screens = 20
 pole_density = 1
 pole_x_variance = 200
+
+[node name="truck1" parent="." instance=ExtResource( 8 )]
+
+transform/pos = Vector2( -408.112, -1.36035 )
+team = 1
 
 

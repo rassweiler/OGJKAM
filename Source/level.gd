@@ -32,6 +32,8 @@ func generate_level():
 		
 		screen.set_pos(pos)
 		
+		terrain.append(screen)
+		
 		for p in range(pole_density):
 			var pole = build_pole()
 			
@@ -44,6 +46,10 @@ func generate_level():
 			pole_pos.x += pos.x
 			
 			pole.set_pos(pole_pos)
+			
+			pole.pole_index = poles.size()
+			
+			poles.append(pole)
 
 func _ready():
 	# Called every time the node is added to the scene.
