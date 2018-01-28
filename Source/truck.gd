@@ -70,7 +70,7 @@ func determine_inputs():
 	var players = globals.playersForTeam(self.team)
 	
 	if players.size() == 0:
-		if team == 0:
+		if team == 0 or team == 1:
 			truck_on_device = 0
 			player_on_device = 0
 		return
@@ -156,7 +156,8 @@ func process_default(delta):
 		self.velocity.x += natural_brake * delta
 	
 	var position = self.real_truck.get_pos()
-	position.x += clamp(self.velocity.x, -self.max_speed/2, self.max_speed*2) * delta
+	self.velocity.x = clamp(self.velocity.x, -self.max_speed/2, self.max_speed*2)
+	position.x += self.velocity.x * delta
 	#position.y = 0
 	#get_node("Player").apply_impulse(get_node("Player").get_global_pos(), velocity)
 	

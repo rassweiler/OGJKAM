@@ -3,6 +3,8 @@ extends Node2D
 export(int) var gravity = 98
 export(int) var speed = 20
 
+onready var globals = get_node('/root/globals')
+
 enum STATES {
 	default,
 	attack,
@@ -27,12 +29,16 @@ onready var state_change_at = OS.get_ticks_msec()
 
 var last_stunned_at = 0
 
+var initial_tether = Vector2()
+
 var touching_other_player = false
 var other_player = null
 
 func _ready():
 	get_node("Node2D/Body/PlayerTriggerStatic").connect("body_enter", self, "on_body_enter")
 	get_node("Node2D/Body/PlayerTriggerStatic").connect("body_exit", self, "on_body_exit")
+	
+	initial_tether = globals.current_scene.get_node("Level").poles[0].get_global_pos()
 	
 	self.set_fixed_process(true)
 
@@ -134,12 +140,16 @@ func _fixed_process(delta):
 	update()
 
 func _draw():
+	var color = Color(1, .5, .5, .4)
+	if self.get_parent().team == 0:
+		color = Color(.1, 1, .2, .4)
+	draw_set_transform_matrix(get_global_transform().affine_inverse())
+	
+	var start = initial_tether
 	if self.last_fixed_instance != null:
-		var color = Color(1, .5, .5, .4)
-		if self.get_parent().team == 0:
-			color = Color(.1, 1, .2, .4)
-		draw_set_transform_matrix(get_global_transform().affine_inverse())
-		draw_line(self.last_fixed_instance.get_global_pos(), self.get_global_pos(), color, 4)
+		start = self.last_fixed_instance.get_global_pos()
+	draw_line(start, self.get_global_pos(), color, 4)
+	
 	
 	#var color = null 
 	#if self.state == STATES.action:

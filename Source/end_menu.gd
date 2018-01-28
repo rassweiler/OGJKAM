@@ -3,7 +3,7 @@ extends Control
 onready var globals = get_node('/root/globals')
 
 func _ready():
-	if globals.gaem_state.winner != null:
+	if globals.game_state.winner != null:
 		if globals.game_state.winner == 1:
 			get_node("EndMenuBackground/TeamNameRR").set("visibility/visible", false)
 			get_node("EndMenuBackground/TeamNameMJP").set("visibility/visible", true)

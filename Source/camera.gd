@@ -5,7 +5,7 @@ var shape = Rect2(0, 0, 0, 0)
 var goal_pos = Vector2(0,0)
 var goal_zoom = Vector2(1,1)
 
-const CAMSPEED = 150
+const CAMSPEED = 550
 const CAMZOOMSPEED = 1
 
 func _ready():
@@ -133,4 +133,7 @@ func _process(delta):
 		self.goal_pos.y = min(-300*scale, self.goal_pos.y)
 		
 		self.goal_zoom = Vector2(scale,scale)
+		
+	if goal_zoom.x < 1.2:
+		goal_zoom = Vector2(1.2, 1.2)
 

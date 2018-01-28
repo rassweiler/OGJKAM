@@ -99,7 +99,7 @@ func generate_level():
 	
 	for i in range(0,10):
 		var road = build_screen()
-		road.set_global_pos(Vector2((i*1920) + max_x, 560))
+		road.set_global_pos(Vector2((i*1920) + max_x - 1920, 560))
 
 func _ready():
 	# Called every time the node is added to the scene.
