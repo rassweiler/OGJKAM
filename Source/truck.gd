@@ -27,8 +27,10 @@ var state = STATES.default
 var velocity = Vector2(0, 0)
 
 onready var state_change_at = OS.get_ticks_msec()
-onready var wheel_left = self.get_node("RealTruck/WheelLeft")
-onready var wheel_right = self.get_node("RealTruck/WheelRight")
+onready var wheel_front_left = self.get_node("RealTruck/Body/WheelFrontLeft/RimFrontLeft")
+onready var wheel_front_right = self.get_node("RealTruck/Body/WheelFrontRight/RimFrontRight")
+onready var wheel_back_left = self.get_node("RealTruck/Body/WheelBackLeft/RimBackLeft")
+onready var wheel_back_right = self.get_node("RealTruck/Body/WheelBackRight/RimBackRight")
 
 onready var real_truck = self.get_node("RealTruck")
 
@@ -160,12 +162,16 @@ func process_default(delta):
 	
 	if (self.velocity.x > 0):
 		var mod = self.velocity.x / self.max_speed
-		self.wheel_left.set_rotd(self.wheel_left.get_rotd() - 5 * mod)
-		self.wheel_right.set_rotd(self.wheel_right.get_rotd() - 5 * mod)
+		self.wheel_front_left.set_rotd(self.wheel_front_left.get_rotd() - 5 * mod)
+		self.wheel_front_right.set_rotd(self.wheel_front_right.get_rotd() - 5 * mod)
+		self.wheel_back_left.set_rotd(self.wheel_back_left.get_rotd() - 5 * mod)
+		self.wheel_back_right.set_rotd(self.wheel_back_right.get_rotd() - 5 * mod)
 	elif (self.velocity.x < 0):
 		var mod = abs(self.velocity.x) / self.max_speed
-		self.wheel_left.set_rotd(self.wheel_left.get_rotd() + 5 * mod)
-		self.wheel_right.set_rotd(self.wheel_right.get_rotd() + 5 * mod)
+		self.wheel_front_left.set_rotd(self.wheel_front_left.get_rotd() + 5 * mod)
+		self.wheel_front_right.set_rotd(self.wheel_front_right.get_rotd() + 5 * mod)
+		self.wheel_back_left.set_rotd(self.wheel_back_left.get_rotd() + 5 * mod)
+		self.wheel_back_right.set_rotd(self.wheel_back_right.get_rotd() + 5 * mod)
 	
 	var level = globals.current_scene.get_node("Level")
 		
