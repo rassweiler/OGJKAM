@@ -16,6 +16,9 @@ var poles = []
 var lines = []
 var active_lines = []
 
+var min_x = 0
+var max_x = 1000
+
 func build_screen():
 	var screen = Ground.instance()
 	
@@ -84,6 +87,9 @@ func generate_level():
 			pole.pole_index = poles.size()
 			
 			poles.append(pole)
+	
+	min_x = terrain[0].get_pos().x
+	max_x = terrain[-1].get_pos().x + 1920
 
 func _ready():
 	# Called every time the node is added to the scene.

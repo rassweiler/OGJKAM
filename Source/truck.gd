@@ -167,6 +167,10 @@ func process_default(delta):
 		self.wheel_left.set_rotd(self.wheel_left.get_rotd() + 5 * mod)
 		self.wheel_right.set_rotd(self.wheel_right.get_rotd() + 5 * mod)
 	
+	var level = globals.current_scene.get_node("Level")
+		
+	position.x = clamp(position.x, level.min_x, level.max_x)
+	
 	self.real_truck.set_pos(position)
 
 func _fixed_process(delta):

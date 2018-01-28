@@ -10,7 +10,7 @@ extents = Vector2( 960, 520 )
 
 [node name="Ground" type="Sprite"]
 
-transform/pos = Vector2( -31.4707, 578.583 )
+transform/pos = Vector2( -31, 579 )
 texture = ExtResource( 1 )
 script/script = ExtResource( 2 )
 
@@ -29,6 +29,7 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GroundBox"]
 
+visibility/visible = false
 shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0

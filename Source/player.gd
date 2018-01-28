@@ -86,11 +86,16 @@ func action_released():
 		self.set_state(STATES.default, null)
 		self.fixing_box = null
 
+func got_knocked():
+	if state == STATES.fixing:
+		self.set_state(STATES.default, null)
+		self.fixing_box = null
+
 func fixed_box():
 	self.set_state(STATES.default, null)
 	self.fixing_box.get_parent().fixed(self.fixing_box, self)
 	self.last_fixed = self.fixing_box.get_parent().pole_index
-	self.last_fixed_instance = self.fixing_box.get_parent()
+	self.last_fixed_instance = self.fixing_box
 	var line = self.get_parent().get_parent().get_node("Level").get_line_for_team(self.get_parent().team)
 	line.add_pole(self.fixing_box.get_parent(), self.fixing_box.get_global_pos().y)
 	self.get_parent().get_parent().get_node("Level").check_lines()
@@ -117,7 +122,9 @@ func _fixed_process(delta):
 		
 		if touching_other_player:
 			self.set_state(STATES.attack, null)
+			self.other_player.got_knocked()
 			self.other_player.apply_impulse(self.other_player.get_global_pos(), self.get_parent().velocity * 100)
+			
 	elif (state == STATES.stunned):
 		if OS.get_ticks_msec() - self.state_change_at > 3000:
 			last_stunned_at = OS.get_ticks_msec()
@@ -127,18 +134,25 @@ func _fixed_process(delta):
 	update()
 
 func _draw():
-	var color = null 
-	if self.state == STATES.action:
-		color = Color(255, 0, 0)
-	elif self.state == STATES.fixing:
-		color = Color(0, 255, 0)
-	elif self.state == STATES.default:
-		color = Color(0, 0, 255)
-	elif self.state == STATES.attack:
-		color = Color(1, 1, 0)
-	else:
-		print ("WTF", self.state)
+	if self.last_fixed_instance != null:
+		var color = Color(1, .5, .5, .4)
+		if self.get_parent().team == 0:
+			color = Color(.1, 1, .2, .4)
+		draw_set_transform_matrix(get_global_transform().affine_inverse())
+		draw_line(self.last_fixed_instance.get_global_pos(), self.get_global_pos(), color, 4)
 	
-	if color != null:
-		#draw_set_transform_matrix(get_global_transform().affine_inverse())
-		draw_circle(self.get_pos(), 5, color)
+	#var color = null 
+	#if self.state == STATES.action:
+	#	color = Color(255, 0, 0)
+	#elif self.state == STATES.fixing:
+	#	color = Color(0, 255, 0)
+	#elif self.state == STATES.default:
+	#	color = Color(0, 0, 255)
+	#elif self.state == STATES.attack:
+	#	color = Color(1, 1, 0)
+	#else:
+	#	print ("WTF", self.state)
+	
+	#if color != null:
+	#	#draw_set_transform_matrix(get_global_transform().affine_inverse())
+	#	draw_circle(self.get_pos(), 5, color)
