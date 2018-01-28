@@ -2,6 +2,15 @@ extends Sprite
 
 var pole_index = -1
 
+var targets = {
+	"GreenTarget": {
+		"fixed": false
+	},
+	"PinkTarget": {
+		"fixed": false
+	}
+}
+
 func randomize_goals():
 	randomize()
 	var location = rand_range(0, 300)
@@ -16,6 +25,10 @@ func randomize_goals():
 	order[0].set_pos(Vector2(tpos.x, location + gap))
 	tpos = order[1].get_pos()
 	order[1].set_pos(Vector2(tpos.x, location - gap))
+	
+func fixed(box):
+	targets[box.get_name()]["fixed"] = true
+	box.set("visibility/visible", false)
 
 func _ready():
 	randomize_goals()
