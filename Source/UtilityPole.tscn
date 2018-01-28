@@ -1,19 +1,29 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=9 format=1]
 
-[ext_resource path="res://media/temp_art/level001/UtilityPole.png" type="Texture" id=1]
+[ext_resource path="res://media/temp_art/level001/UtilityPole.tex" type="Texture" id=1]
 [ext_resource path="res://UtilityPole.gd" type="Script" id=2]
-[ext_resource path="res://media/temp_art/level001/TargetBlue.png" type="Texture" id=3]
-[ext_resource path="res://media/temp_art/level001/TargetRed.png" type="Texture" id=4]
+[ext_resource path="res://media/temp_art/level001/TargetBlue.tex" type="Texture" id=3]
+[ext_resource path="res://media/temp_art/level001/TargetRed.tex" type="Texture" id=4]
+[ext_resource path="res://media/sounds/FixCompleted.smp" type="Sample" id=5]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=4]
+
+custom_solver_bias = 0.0
+radius = 30.0
+
+[sub_resource type="CircleShape2D" id=5]
 
 custom_solver_bias = 0.0
 radius = 30.0
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="SampleLibrary" id=3]
 
-custom_solver_bias = 0.0
-radius = 30.0
+samples/FixCompleted = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
 
 [node name="UtilityPole" type="Sprite"]
 
@@ -24,7 +34,7 @@ script/script = ExtResource( 2 )
 [node name="GreenTarget" type="StaticBody2D" parent="."]
 
 input/pickable = false
-shapes/0/shape = SubResource( 1 )
+shapes/0/shape = SubResource( 4 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = true
 collision/layers = 1
@@ -40,14 +50,14 @@ texture = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GreenTarget"]
 
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 trigger = true
 _update_shape_index = 0
 
 [node name="PinkTarget" type="StaticBody2D" parent="."]
 
 input/pickable = false
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 5 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 4.54419, 0 )
 shapes/0/trigger = true
 collision/layers = 1
@@ -64,8 +74,19 @@ texture = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PinkTarget"]
 
 transform/pos = Vector2( 4.54419, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 5 )
 trigger = true
 _update_shape_index = 0
+
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="."]
+
+params/volume_db = -1.0
+params/pitch_scale = 0.999
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 3 )
+config/pitch_random = 0.0
 
 
