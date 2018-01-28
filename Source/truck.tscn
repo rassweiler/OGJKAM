@@ -138,6 +138,7 @@ angular_damp = 1.0
 [node name="Trigger" type="Sprite" parent="RealTruck/Body/TruckHandle"]
 
 transform/pos = Vector2( 16, 0 )
+transform/rot = -45.0
 z/z = -1
 texture = ExtResource( 11 )
 offset = Vector2( -22.4424, 0.432007 )

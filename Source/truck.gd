@@ -178,7 +178,7 @@ func stun():
 	
 	is_stunned = true
 	stunned_at = OS.get_ticks_msec()
-	
+	get_node("RealTruck/Body/TruckHandle/Trigger").set_rotd(45)
 	stun_sparks.set_emitting(true)
 
 func process_default(delta):
@@ -187,6 +187,7 @@ func process_default(delta):
 	
 	if OS.get_ticks_msec() - stunned_at > 2500:
 		is_stunned = false
+		get_node("RealTruck/Body/TruckHandle/Trigger").set_rotd(-45)
 		stun_sparks.set_emitting(false)
 	
 	if (forward_acceleration_modifier > .2) and !is_stunned:
