@@ -43,13 +43,13 @@ func _ready():
 	var level = globals.current_scene.get_node("Level")
 	get_node("Character01AP").connect("finished", self, "animation_finished")
 	
-	var team = self.get_parent().team
-	
-	var pole_target = "GreenTarget"
-	if team == 1:
-		pole_target = "PinkTarget"
-
 	if level != null:
+		var team = self.get_parent().team
+		
+		var pole_target = "GreenTarget"
+		if team == 1:
+			pole_target = "PinkTarget"
+			
 		initial_tether = level.poles[0].get_node(pole_target).get_global_pos()
 
 	
