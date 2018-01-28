@@ -37,7 +37,7 @@ func complete():
 func fixed(box, player):
 	targets[box.get_name()]["fixed"] = true
 	box.set("visibility/visible", false)
-	
+	get_node("SamplePlayer2D").play("FixCompleted")
 	globals.game_state.team_scored(player.get_parent().team)
 
 func _ready():
