@@ -91,6 +91,39 @@ texture = ExtResource( 5 )
 transform/pos = Vector2( -70.4459, 45.9524 )
 texture = ExtResource( 6 )
 
+[node name="Particles2D" type="Particles2D" parent="Players/Player01"]
+
+visibility/visible = false
+transform/pos = Vector2( 132.684, 84.9178 )
+transform/rot = 35.1636
+config/amount = 32
+config/lifetime = 1.0
+config/time_scale = 2.0
+config/preprocess = 3.0
+config/process_mode = 1
+config/local_space = false
+params/direction = 0.0
+params/spread = 80.0
+params/linear_velocity = 20.0
+params/spin_velocity = 5.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 5.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 20.0
+randomness/spread = 1.0
+randomness/linear_velocity = 1.0
+randomness/spin_velocity = 1.0
+color/color = Color( 1, 1, 0, 1 )
+
 [node name="Player02" type="Control" parent="Players"]
 
 focus/ignore_mouse = false
@@ -131,6 +164,39 @@ texture = ExtResource( 5 )
 
 transform/pos = Vector2( -72.2965, 41.819 )
 texture = ExtResource( 7 )
+
+[node name="Particles2D" type="Particles2D" parent="Players/Player02"]
+
+visibility/visible = false
+transform/pos = Vector2( 132.684, 84.5879 )
+transform/rot = 35.1636
+config/amount = 32
+config/lifetime = 1.0
+config/time_scale = 2.0
+config/preprocess = 3.0
+config/process_mode = 1
+config/local_space = false
+params/direction = 0.0
+params/spread = 80.0
+params/linear_velocity = 20.0
+params/spin_velocity = 5.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 5.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 20.0
+randomness/spread = 1.0
+randomness/linear_velocity = 1.0
+randomness/spin_velocity = 1.0
+color/color = Color( 1, 0, 0, 1 )
 
 [node name="Player03" type="Control" parent="Players"]
 
@@ -173,6 +239,39 @@ texture = ExtResource( 5 )
 transform/pos = Vector2( -73.2965, 33.835 )
 texture = ExtResource( 8 )
 
+[node name="Particles2D" type="Particles2D" parent="Players/Player03"]
+
+visibility/visible = false
+transform/pos = Vector2( 131.684, 84.5879 )
+transform/rot = 35.1636
+config/amount = 32
+config/lifetime = 1.0
+config/time_scale = 2.0
+config/preprocess = 3.0
+config/process_mode = 1
+config/local_space = false
+params/direction = 0.0
+params/spread = 80.0
+params/linear_velocity = 20.0
+params/spin_velocity = 5.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 5.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 20.0
+randomness/spread = 1.0
+randomness/linear_velocity = 1.0
+randomness/spin_velocity = 1.0
+color/color = Color( 0.345098, 0.898039, 0.231373, 1 )
+
 [node name="Player04" type="Control" parent="Players"]
 
 focus/ignore_mouse = false
@@ -213,6 +312,39 @@ texture = ExtResource( 5 )
 
 transform/pos = Vector2( -73.1471, 30.9547 )
 texture = ExtResource( 9 )
+
+[node name="Particles2D" type="Particles2D" parent="Players/Player04"]
+
+visibility/visible = false
+transform/pos = Vector2( 133.684, 84.5879 )
+transform/rot = 35.1636
+config/amount = 32
+config/lifetime = 1.0
+config/time_scale = 2.0
+config/preprocess = 3.0
+config/process_mode = 1
+config/local_space = false
+params/direction = 0.0
+params/spread = 80.0
+params/linear_velocity = 20.0
+params/spin_velocity = 5.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 5.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/direction = 20.0
+randomness/spread = 1.0
+randomness/linear_velocity = 1.0
+randomness/spin_velocity = 1.0
+color/color = Color( 1, 0, 0.831373, 1 )
 
 [node name="Positions" type="Control" parent="."]
 

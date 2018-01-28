@@ -34,18 +34,26 @@ var slot_info = [{
 var player_els = [{
 	"join": "Players/Player01/JoinIndicator",
 	"token": "Players/Player01/Player001",
+	"switch": "Players/Player01/SwitchSwitch",
+	"spark": "Players/Player01/Particles2D",
 	"tokenInitial": Vector2()
 }, {
 	"join": "Players/Player02/JoinIndicator",
 	"token": "Players/Player02/Player002",
+	"switch": "Players/Player02/SwitchSwitch",
+	"spark": "Players/Player02/Particles2D",
 	"tokenInitial": Vector2()
 }, {
 	"join": "Players/Player03/JoinIndicator",
 	"token": "Players/Player03/Player003",
+	"switch": "Players/Player03/SwitchSwitch",
+	"spark": "Players/Player03/Particles2D",
 	"tokenInitial": Vector2()
 }, {
 	"join": "Players/Player04/JoinIndicator",
 	"token": "Players/Player04/Player004",
+	"switch": "Players/Player04/SwitchSwitch",
+	"spark": "Players/Player04/Particles2D",
 	"tokenInitial": Vector2()
 }]
 
@@ -74,6 +82,8 @@ func removePlayer(player):
 	player.position = -1
 			
 	get_node(player_els[player.index]["join"]).set("visibility/visible", true)
+	get_node(player_els[player.index]["spark"]).set("visibility/visible", false)
+	get_node(player_els[player.index]["switch"]).set_rotd(-45)
 	get_node(player_els[player.index]["token"]).set_pos(player_els[player.index]["tokenInitial"])
 			
 func playerInSlot(player):
@@ -84,6 +94,8 @@ func playerInSlot(player):
 	
 func slotPlayer(player, intoSlot):
 	get_node(player_els[player.index]["join"]).set("visibility/visible", false)
+	get_node(player_els[player.index]["spark"]).set("visibility/visible", true)
+	get_node(player_els[player.index]["switch"]).set_rotd(45)
 	get_node(player_els[player.index]["token"]).set_pos(get_node(intoSlot["holder"]).get_global_pos() - get_node(player_els[player.index]["token"]).get_parent().get_pos())
 	
 	var joined_players = 0
