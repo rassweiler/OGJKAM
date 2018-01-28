@@ -56,10 +56,10 @@ func _process(delta):
 		self.set_zoom(new_zoom)
 	
 	var points = [
-		self.get_parent().get_node("truck"),
-		self.get_parent().get_node("truck/Player"),
-		self.get_parent().get_node("truck1"),
-		self.get_parent().get_node("truck1/Player")
+		self.get_parent().get_node("truck/RealTruck"),
+		#self.get_parent().get_node("truck/Player"),
+		self.get_parent().get_node("truck1/RealTruck"),
+		#self.get_parent().get_node("truck1/Player")
 	]
 	
 	self.shape = Rect2(10000, 10000, -10000, -10000)
@@ -79,24 +79,23 @@ func _process(delta):
 		
 		self.shape = Rect2(minx, miny, maxx - minx, maxy - miny)
 		
-	self.shape = self.shape.grow(200)
+	self.shape = self.shape.grow(500)
 	
 	var start = self.shape.pos
 	var end = self.shape.end
-	var ss = Rect2(0, 0, 1920, 1080)
 	
 	var size = self.shape.size
 	
 	var smaller_than_screen = (self.shape.size.x < 1920 && self.shape.size.y < 1080)
 	
-	var allow_zoom = true
+	var allow_zoom = false
 	
 	if (smaller_than_screen and not allow_zoom):
 		self.goal_pos = Vector2(
 			(self.shape.size.x/2)+start.x,
 			(self.shape.size.y/2)+start.y
 		)
-		
+		self.goal_pos.y = min(-300, self.goal_pos.y)
 		self.goal_zoom = Vector2(1,1)
 	elif (smaller_than_screen and allow_zoom):
 		var scale_to = Vector2(min(self.shape.size.x, 1920), min(self.shape.size.y, 1080))
@@ -129,6 +128,8 @@ func _process(delta):
 			(self.shape.size.x/2)+start.x,
 			(self.shape.size.y/2)+start.y
 		)
+		
+		self.goal_pos.y = min(-300*scale, self.goal_pos.y)
 		
 		self.goal_zoom = Vector2(scale,scale)
 
