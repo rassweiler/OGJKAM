@@ -1,5 +1,5 @@
-# OGJKAM
-Ottawa Game Jam Repository for Team Chroma
+# Utility Runner
+Team Chroma GGJ updated to Godot 3.0
 
 # Instructions
 
@@ -35,4 +35,17 @@ Dont hit the ground or you'll complete the circuit and get stunned for a bit. Ma
 
 # Credit Town
 
-Music by SketchyLogic [OpenGameArt](https://opengameart.org/content/nes-shooter-music-5-tracks-3-jingles)
+### Programming
+Matthew Dennis
+Kyle Rassweiler
+
+### Art
+Kyle Rassweiler
+
+### Sound
+Matthew Dennis
+Kyle Rassweiler
+
+### Music
+
+SketchyLogic [OpenGameArt](https://opengameart.org/content/nes-shooter-music-5-tracks-3-jingles)
