@@ -37,6 +37,7 @@ Dont hit the ground or you'll complete the circuit and get stunned for a bit. Ma
 
 ### Programming
 Matthew Dennis
+
 Kyle Rassweiler
 
 ### Art
@@ -44,6 +45,7 @@ Kyle Rassweiler
 
 ### Sound
 Matthew Dennis
+
 Kyle Rassweiler
 
 ### Music
